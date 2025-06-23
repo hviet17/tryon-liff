@@ -26,9 +26,16 @@ if (splide) {
         const left = window.screenX + (window.outerWidth - popupWidth) / 2;
         const top = window.screenY + (window.outerHeight - popupHeight) / 2;
         window.open(
-            `https://vietho.localhost:5175/#url=${encodedImgSrc}`,
+            `https://tryon-liff.pages.dev/#url=${encodedImgSrc}`,
             'popupWindow',
             `width=${popupWidth},height=${popupHeight},left=${left},top=${top},menubar=no,toolbar=no,status=no,resizable=yes,scrollbars=yes`
         );
     });
 }
+
+window.addEventListener('message', (e) => {
+    if (e.data === "buy") {
+        const buyButton = document.querySelector('button[data-cl-params*="addmdl"]');
+        if (buyButton) buyButton.click();
+    }
+});

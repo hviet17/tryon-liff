@@ -36,7 +36,12 @@ const startTryOn = () => {
   }, TIME_OUT)
 }
 const buy = () => {
-
+  if (window.opener) {
+    window.opener.postMessage('buy', '*');
+    window.close();
+  } else {
+    console.log('No opener');
+  }
 }
 const share = () => {
   const data = []
