@@ -1,16 +1,17 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import {isValidUrl} from "@/helper.js";
-import {CLOTHES_SRC_KEY, PROFILE_SRC_KEY} from "@/const.js";
+import {CLOTHES_SRC_KEY, PROFILE_SRC_KEY, FUN_TEXT_DB} from "@/const.js";
 
 const clothingSrc = ref("")
 const profileSrc = ref("")
 const resultSrc = ref("")
 const processing = ref(false)
 const done = ref(false)
-const TIME_OUT = 3000;
+const TIME_OUT = 10000;
 const progressBar = ref(null)
 const result = "https://i.imgur.com/obqzU0Q.jpeg"
+const funText = ref("");
 
 const startProgress = (duration) => {
   // Reset first
@@ -24,15 +25,23 @@ const startProgress = (duration) => {
     progressBar.value.style.width = '100%';
   }, 50);
 }
+const randomFunText = () => {
+  const randomIndex = Math.floor(Math.random() * FUN_TEXT_DB.length);
+  funText.value = FUN_TEXT_DB[randomIndex];
+}
 
 const startTryOn = () => {
   processing.value = true
   done.value = false
   startProgress(TIME_OUT)
+  randomFunText();
+  const updateFunText = setInterval(randomFunText, 3000);
   setTimeout(() => {
     processing.value = false
     done.value = true
+    funText.value = ""
     resultSrc.value = result;
+    clearInterval(updateFunText);
   }, TIME_OUT)
 }
 const buy = () => {
@@ -121,7 +130,10 @@ onMounted(() => {
 
 <template>
   <div class="container d-flex flex-column h-100">
-    <h1 class="mb-4 text-center">Welcome to Try-it-on</h1>
+    <h1 class="mb-4 text-center">
+      <template v-if="!done">Welcome to Try-it-on</template>
+      <template v-else>Success!</template>
+    </h1>
     <div class="row flex-fill text-center">
       <template v-if="done">
         <div class="col-sm-12 pt-0 p-2">
@@ -149,8 +161,11 @@ onMounted(() => {
     <div class="row footer mt-auto py-5">
       <div class="col-sm-12 text-center">
         <button class="btn btn-primary fw-bold" @click="startTryOn" v-if="!processing && !done" :disabled="!clothingSrc || !profileSrc">Try-it-on</button>
-        <div class="progress" id="progress-bar" v-show="processing">
-          <div class="progress-bar" role="progressbar" style="width: 0%" ref="progressBar"></div>
+        <div v-show="processing">
+          <div class="progress" id="progress-bar">
+            <div class="progress-bar" role="progressbar" style="width: 0%" ref="progressBar"></div>
+          </div>
+          <p class="fw-bold mt-2">{{funText}}</p>
         </div>
         <div class="d-flex gap-2 justify-content-center align-items-center" v-if="done">
           <button class="btn btn-danger fw-bold" @click="buy">Buy</button>
@@ -172,6 +187,11 @@ onMounted(() => {
   background-color: #e9ecef;
   border-radius: 10px;
   overflow: hidden;
+
+  span {
+    font-size: 20px;
+    color: #fff;
+  }
 }
 .progress-bar {
   height: 100%;
