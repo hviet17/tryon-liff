@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 let liffCheck = true;
-const liffId = '2007617971-5qowXjRw';
+const liffId = import.meta.env.VITE_LIFF_ID;
 const LIFF = {
     initialize: (callback) => {
         liff

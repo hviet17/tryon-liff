@@ -1,48 +1,88 @@
 <script setup>
 import {onMounted, ref} from "vue";
-import {isValidUrl} from "@/helper.js";
+import {dataURLToBlob, isValidUrl, urlToBlob} from "@/helper.js";
 import {CLOTHES_SRC_KEY, PROFILE_SRC_KEY, FUN_TEXT_DB} from "@/const.js";
+import {generateImage} from "@/services/generate.js";
 
 const clothingSrc = ref("")
 const profileSrc = ref("")
+const profileBlob = ref("")
 const resultSrc = ref("")
+
 const processing = ref(false)
 const done = ref(false)
-const TIME_OUT = 10000;
 const progressBar = ref(null)
-const result = "https://i.imgur.com/obqzU0Q.jpeg"
 const funText = ref("");
 
-const startProgress = (duration) => {
-  // Reset first
-  progressBar.value.style.transition = 'none';
-  progressBar.value.style.width = '0%';
-  processing.value = true;
+function createProgressBar(avgDurationMs) {
+  const progressEl = progressBar.value;
+  let progress = 0;
+  let isComplete = false;
 
-  // Allow the reset to apply
-  setTimeout(() => {
-    progressBar.value.style.transition = `width ${duration}ms linear`;
-    progressBar.value.style.width = '100%';
-  }, 50);
+  const totalSteps = 100; // update every 1% approx
+  const intervalTime = avgDurationMs / totalSteps;
+
+  const interval = setInterval(() => {
+    if (isComplete) return;
+
+    // Simulate acceleration → deceleration
+    let step;
+    if (progress < 70) step = 0.5 + Math.random() * 1.5;
+    else if (progress < 90) step = 0.2 + Math.random() * 0.5;
+    else step = 0.05 + Math.random() * 0.1;
+
+    progress = Math.min(progress + step, 95);
+    progressEl.style.width = progress.toFixed(1) + "%";
+  }, intervalTime);
+
+  return {
+    complete() {
+      if (isComplete) return;
+      isComplete = true;
+      clearInterval(interval);
+
+      // Finish to 100% smoothly
+      const finishInterval = setInterval(() => {
+        progress += 1;
+        progressEl.style.width = progress + "%";
+
+        if (progress >= 100) {
+          clearInterval(finishInterval);
+        }
+      }, 20);
+    }
+  };
 }
+
+
+const uploadImages = async () => {
+  const progressBar = createProgressBar(30000);
+  const clothingBlob = await urlToBlob(clothingSrc.value);
+  let result = null;
+  if (profileBlob.value || profileSrc.value) {
+    result = await generateImage(profileBlob.value || dataURLToBlob(profileSrc.value), clothingBlob)
+  }
+  progressBar.complete();
+  return result;
+}
+
 const randomFunText = () => {
   const randomIndex = Math.floor(Math.random() * FUN_TEXT_DB.length);
   funText.value = FUN_TEXT_DB[randomIndex];
 }
 
-const startTryOn = () => {
+const startTryOn = async() => {
   processing.value = true
   done.value = false
-  startProgress(TIME_OUT)
   randomFunText();
   const updateFunText = setInterval(randomFunText, 3000);
-  setTimeout(() => {
-    processing.value = false
+  resultSrc.value = await uploadImages()
+  processing.value = false
+  funText.value = ""
+  clearInterval(updateFunText);
+  if (resultSrc.value) {
     done.value = true
-    funText.value = ""
-    resultSrc.value = result;
-    clearInterval(updateFunText);
-  }, TIME_OUT)
+  }
 }
 const buy = () => {
   if (window.opener) {
@@ -53,11 +93,12 @@ const buy = () => {
   }
 }
 const share = () => {
+  if (!resultSrc.value) return;
   const data = []
-  if (clothingSrc.value) data.push( {
+  data.push( {
     type: 'image',
-    originalContentUrl: clothingSrc.value,
-    previewImageUrl: clothingSrc.value
+    originalContentUrl: resultSrc.value,
+    previewImageUrl: resultSrc.value
   })
   if (liff) {
     liff.shareTargetPicker(data).then((res) => {
@@ -97,6 +138,7 @@ const download = async () => {
 const onProfileChange = (e) => {
   const file = e.target.files[0];
   if (file) {
+    profileBlob.value = file;
     const reader = new FileReader();
     reader.onload = function(event) {
       const dataUrl = event.target.result;  // base64 encoded image
@@ -163,7 +205,7 @@ onMounted(() => {
         <button class="btn btn-primary fw-bold" @click="startTryOn" v-if="!processing && !done" :disabled="!clothingSrc || !profileSrc">Try-it-on</button>
         <div v-show="processing">
           <div class="progress" id="progress-bar">
-            <div class="progress-bar" role="progressbar" style="width: 0%" ref="progressBar"></div>
+            <div class="progress-bar" role="progressbar" ref="progressBar" style="width: 0%;"></div>
           </div>
           <p class="fw-bold mt-2">{{funText}}</p>
         </div>
@@ -196,7 +238,7 @@ onMounted(() => {
 .progress-bar {
   height: 100%;
   background-color: #28a745; /* green */
-  transition: width linear;
+  transition: width 0.3s ease;
 }
 #preview-container {
   position: relative;
