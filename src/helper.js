@@ -8,7 +8,7 @@ export const isValidUrl = (string) => {
 }
 
 export const urlToBlob = async (url) => {
-    const response = await fetch(url);
+    const response = await fetch('https://api.allorigins.win/get?url=' + url);
     if (!response.ok) {
         throw new Error(`Failed to fetch image: ${response.status}`);
     }
