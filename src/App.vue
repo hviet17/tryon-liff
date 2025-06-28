@@ -10,7 +10,7 @@ const router = useRouter()
 onMounted(() => {
     setTimeout(() => {
         showWelcome.value = false
-        router.replace('/main') // change '/main' to your actual route
+        router.replace('/') // change '/main' to your actual route
     }, 500)
 })
 </script>
