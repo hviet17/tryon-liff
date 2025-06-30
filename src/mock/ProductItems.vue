@@ -72,7 +72,7 @@ const handleItemSelect = () => {
                                                     </div>
                                                 </div>
                                                 <div class="item">
-                                                    <a class="item-link" href="#" target="_blank" rel="noopener noreferrer">
+                                                    <div class="item-link" href="#" target="_blank" rel="noopener noreferrer" @click="handleItemSelect">
                                                         <div class="item-image-wrapper">
                                                             <img width="1" height="1" class="item-image" src="https://item-shopping.c.yimg.jp/i/j/zozo_95370548" alt="サロペット オーバーオール チェック切り替えキャミサロペ レディース" loading="lazy">
                                                             <div class="item-image-overlay"></div>
@@ -84,10 +84,10 @@ const handleItemSelect = () => {
                                                                 <span class="item-price-unit">円</span>
                                                             </p>
                                                         </div>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                                 <div class="item">
-                                                    <a class="item-link" href="#" target="_blank" rel="noopener noreferrer">
+                                                    <div class="item-link" href="#" target="_blank" rel="noopener noreferrer" @click="handleItemSelect">
                                                         <div class="item-image-wrapper">
                                                             <img width="1" height="1" class="item-image" src="https://item-shopping.c.yimg.jp/i/j/zozo_94943328" alt="キャップ 帽子 「UNISEX」ダメージロゴキャップ レディース メンズ" loading="lazy">
                                                             <div class="item-image-overlay"></div>
@@ -99,10 +99,10 @@ const handleItemSelect = () => {
                                                                 <span class="item-price-unit">円</span>
                                                             </p>
                                                         </div>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                                 <div class="item">
-                                                    <a class="item-link" href="#" target="_blank" rel="noopener noreferrer">
+                                                    <div class="item-link" href="#" target="_blank" rel="noopener noreferrer" @click="handleItemSelect">
                                                         <div class="item-image-wrapper">
                                                             <img width="1" height="1" class="item-image" src="https://item-shopping.c.yimg.jp/i/j/zozo_94943698" alt="ベスト ジレ メランジ編みサマーニットベスト レディース" loading="lazy">
                                                             <div class="item-image-overlay"></div>
@@ -114,10 +114,10 @@ const handleItemSelect = () => {
                                                                 <span class="item-price-unit">円</span>
                                                             </p>
                                                         </div>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                                 <div class="item">
-                                                    <a class="item-link" href="#" target="_blank" rel="noopener noreferrer">
+                                                    <div class="item-link" href="#" target="_blank" rel="noopener noreferrer" @click="handleItemSelect">
                                                         <div class="item-image-wrapper">
                                                             <img width="1" height="1" class="item-image" src="https://item-shopping.c.yimg.jp/i/j/zozo_94647459" alt="スウェットパンツ ジャージ 裏毛ワイドスウェットパンツ/イージーパンツ レディース" loading="lazy">
                                                             <div class="item-image-overlay"></div>
@@ -129,10 +129,10 @@ const handleItemSelect = () => {
                                                                 <span class="item-price-unit">円</span>
                                                             </p>
                                                         </div>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                                 <div class="item">
-                                                    <a class="item-link" href="#" target="_blank" rel="noopener noreferrer">
+                                                    <div class="item-link" href="#" target="_blank" rel="noopener noreferrer" @click="handleItemSelect">
                                                         <div class="item-image-wrapper">
                                                             <img width="1" height="1" class="item-image" src="https://item-shopping.c.yimg.jp/i/j/zozo_94715113" alt="トートバッグ 「Aguni」メルカドBAG レディース" loading="lazy">
                                                             <div class="item-image-overlay"></div>
@@ -144,10 +144,10 @@ const handleItemSelect = () => {
                                                                 <span class="item-price-unit">円</span>
                                                             </p>
                                                         </div>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                                 <div class="item">
-                                                    <a class="item-link" href="#" target="_blank" rel="noopener noreferrer">
+                                                    <div class="item-link" href="#" target="_blank" rel="noopener noreferrer" @click="handleItemSelect">
                                                         <div class="item-image-wrapper">
                                                             <img width="1" height="1" class="item-image" src="https://item-shopping.c.yimg.jp/i/j/zozo_94647699" alt="tシャツ 2WAYシアーヘンリーネックTEE レディース" loading="lazy">
                                                             <div class="item-image-overlay"></div>
@@ -159,7 +159,7 @@ const handleItemSelect = () => {
                                                                 <span class="item-price-unit">円</span>
                                                             </p>
                                                         </div>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                                 <div class="item">
                                                     <a class="item-link" href="#" target="_blank" rel="noopener noreferrer">

@@ -4,6 +4,7 @@ import AppLayout from "@/layout/AppLayout.vue";
 import WelcomeView from "@/views/WelcomeView.vue";
 import {onMounted, ref} from 'vue'
 import Loading from '@/components/common/Loading.vue'
+import {isLoading} from '@/stores/globalLoading'
 
 const showWelcome = ref(true);
 const router = useRouter()
@@ -16,7 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Loading v-if="true"/>
+    <Loading v-if="isLoading"/>
     <WelcomeView v-if="showWelcome"/>
     <AppLayout v-else>
         <RouterView/>

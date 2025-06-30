@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import AIIcon from '@/assets/icons/ai-icon-btn.svg'
 import {useRouter} from 'vue-router'
+import {isLoading} from '@/stores/globalLoading'
 
 const router = useRouter()
 const handleAIFit = () => {
-    router.push('/guide')
+    isLoading.value = true
+    setTimeout(() => {
+        isLoading.value = false
+        router.push('/result')
+    }, 700)
 }
 </script>
 
