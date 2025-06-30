@@ -1,11 +1,10 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import WelcomeView from "@/views/WelcomeView.vue";
 import MainView from "@/views/MainView.vue";
-import ItemDetail from "@/components/Items/ItemDetail.vue";
 import Guide from "@/components/Guide/Guide.vue";
 import Result from "@/components/result/Result.vue";
 import Home from "@/views/Home.vue";
-import Test from "@/views/Test.vue";
+import ProductPage from "@/mock/ProductPage.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,9 +24,9 @@ const router = createRouter({
             name: 'main',
             component: MainView
         }, {
-            path: '/detail/:imgSrc',
+            path: '/detail',
             name: 'detail',
-            component: ItemDetail
+            component: ProductPage
         }, {
             path: '/guide',
             name: 'guide',
@@ -36,15 +35,10 @@ const router = createRouter({
             path: '/result',
             name: 'result',
             component: Result
-        }, {
-            path: '/test',
-            name: 'test',
-            component: Test
         }
     ],
 })
 
-// Flag to avoid multiple splash delays
 let firstLoad = true
 
 router.beforeEach(async (to, from, next) => {
@@ -52,7 +46,7 @@ router.beforeEach(async (to, from, next) => {
         firstLoad = false
 
         // Redirect to splash first
-        next({ name: 'welcome', query: { redirect: to.fullPath } })
+        next({name: 'welcome', query: {redirect: to.fullPath}})
     } else if (to.name === 'welcome' && to.query.redirect) {
         // After showing splash for 2 seconds, go to the intended page
         setTimeout(() => {
@@ -63,6 +57,4 @@ router.beforeEach(async (to, from, next) => {
         next()
     }
 })
-
 export default router
-
