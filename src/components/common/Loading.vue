@@ -1,35 +1,30 @@
 <template>
-    <div class="loading-container">
-        <!-- Background content -->
-        <div
-            v-for="(circle, index) in backgroundCircles"
-            :key="index"
-            class="blurred-circle"
-            :style="circle"
-        />
+    <div class="outer-container">
+        <div class="loading-content-wrapper">
+            <div class="blurred-content-background"></div>
+            <div
+                v-for="(circle, index) in backgroundCircles"
+                :key="index"
+                class="blurred-circle"
+                :style="circle"
+            />
 
-        <!-- Pulse Ripple Circle -->
-        <div class="ripple-wrapper">
-            <div class="ripple"></div>
-            <div class="ripple delay-1"></div>
-            <div class="ripple delay-2"></div>
-            <div class="inner-circle"/>
-        </div>
+            <div class="ripple-wrapper">
+                <div class="ripple"></div>
+                <div class="ripple delay-1"></div>
+                <div class="ripple delay-2"></div>
+                <div class="inner-circle"/>
+            </div>
 
-        <!-- Text and other fixed elements -->
-        <div class="text-title">Upcoming AI Fitting</div>
-        <div class="text-body">
-            WWWWWWWWWWWWWWWWWWWWWWWWWWW
-        </div>
-        <div class="progress-bar">
-            <div class="progress-track white"/>
-            <div class="progress-track black"/>
-        </div>
+            <div class="text-title">Upcoming AI Fitting</div>
+            <div class="text-body">
+                WWWWWWWWWWWWWWWWWWWWWWWWWWW
+            </div>
 
-        <!-- Eyes -->
-        <div class="eye" style="left: 158px"/>
-        <div class="eye" style="left: 203px"/>
-        <div class="eye small"/>
+            <div class="eye" style="left: 158px"/>
+            <div class="eye" style="left: 203px"/>
+            <div class="eye small"/>
+        </div>
     </div>
 </template>
 
@@ -59,16 +54,59 @@ const backgroundCircles = [
 </script>
 
 <style scoped>
-.loading-container {
+/* Ensure HTML and Body take full height/width to allow .outer-container to fill the viewport */
+/* You might put this in a global CSS file or your App.vue's main style block,
+   NOT necessarily scoped to this component if you want it to affect the whole page. */
+html, body, #app { /* Adjust #app if your root Vue element has a different ID */
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
-    position: relative;
-    background: #F8F8F8;
-    overflow: hidden;
-    font-family: 'SF Pro Text', sans-serif;
+    overflow: hidden; /* Prevents scrollbars if content slightly exceeds viewport */
 }
 
-/* Blurred colorful background circles */
+.blurred-content-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #F8F8F8; /* The background color for your blurred block */
+    border-radius: 30px; /* Your desired roundness */
+    //box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Your desired shadow */
+    filter: blur(10px); /* Apply the blur effect to this layer only! */
+    z-index: 0; /* Place it behind all other content within loading-content-wrapper */
+}
+
+/* New outer container to take up 100% of the viewport and hold the background color */
+.outer-container {
+    width: 100vw; /* Take full viewport width */
+    height: 100vh; /* Take full viewport height */
+    background: #F8F8F8; /* This is your overall background color */
+    display: flex; /* Use flexbox to center its child */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    overflow: hidden; /* Hide any overflow from content that might extend slightly */
+    font-family: 'SF Pro Text', sans-serif; /* Apply font to the entire centered design */
+}
+
+/* This new wrapper will contain all your original "loading-container" content.
+   It will be centered by the .outer-container.
+   Crucially, give it a fixed size based on your design's intended dimensions (e.g., mobile screen size).
+   All absolute children will now position themselves relative to this wrapper. */
+.loading-content-wrapper {
+    /* !!! IMPORTANT: Adjust these width and height values to match your design's intended "canvas" size. */
+    width: 375px; /* Example: Common mobile width (e.g., iPhone X/11) */
+    height: 812px; /* Example: Common mobile height (e.g., iPhone X/11) */
+    position: relative; /* All absolute children will now be relative to this wrapper */
+    overflow: hidden; /* Keep overflow hidden for content inside this specific area */
+    border-radius: 30px;
+    /* If you want a *different* background color for the inner centered box, add it here */
+    //background: transparent;
+}
+
+
+/* Blurred colorful background circles - positions are relative to .loading-content-wrapper */
 .blurred-circle {
     position: absolute;
     width: 148px;
@@ -77,27 +115,32 @@ const backgroundCircles = [
     filter: blur(46.53px);
 }
 
-/* Ripple circle with pulse effect */
+/* Ripple circle with pulse effect - position is relative to .loading-content-wrapper */
 .ripple-wrapper {
     position: absolute;
     width: 180px;
     height: 180px;
-    left: 96px;
-    top: 238px;
-    display: flex;
+    /* Adjust these values to position the ripple relative to your loading-content-wrapper.
+       If your original design assumed a 375px width, these might be close to what you need.
+       For perfect horizontal centering within the 375px width:
+       left: calc(50% - 90px);
+    */
+    left: 96px; /* Original value - adjust if needed for your fixed wrapper size */
+    top: 238px; /* Original value - adjust if needed for your fixed wrapper size */
+    display: flex; /* For centering the inner ripple elements */
     align-items: center;
     justify-content: center;
 }
 
 .ripple {
-    position: absolute;
+    position: absolute; /* Relative to ripple-wrapper */
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* This is your subtle white ripple background */
     border: 1.5px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(2.95px);
-    animation: pulse 2.5s infinite;
+    animation: pulse 2.5s infinite; /* Your pulse animation */
 }
 
 .ripple.delay-1 {
@@ -109,7 +152,7 @@ const backgroundCircles = [
 }
 
 .inner-circle {
-    position: absolute;
+    position: absolute; /* Relative to ripple-wrapper */
     width: 180px;
     height: 180px;
     border-radius: 9999px;
@@ -131,11 +174,12 @@ const backgroundCircles = [
     }
 }
 
-/* Texts */
+/* Texts - Centered horizontally within .loading-content-wrapper */
 .text-title {
     position: absolute;
-    top: 509px;
-    left: 69px;
+    top: 509px; /* Adjust top relative to your loading-content-wrapper height */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for its own width */
     width: 240px;
     text-align: center;
     font-size: 17px;
@@ -146,8 +190,9 @@ const backgroundCircles = [
 
 .text-body {
     position: absolute;
-    top: 539px;
-    left: 69px;
+    top: 539px; /* Adjust top relative to your loading-content-wrapper height */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for its own width */
     width: 240px;
     font-size: 13px;
     font-weight: 400;
@@ -157,11 +202,12 @@ const backgroundCircles = [
     word-break: break-all;
 }
 
-/* Progress bar */
+/* Progress bar - Centered horizontally within .loading-content-wrapper */
 .progress-bar {
     position: absolute;
-    top: 778px;
-    left: 120.95px;
+    top: 778px; /* Adjust top relative to your loading-content-wrapper height */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for its own width */
     width: 134px;
     height: 34px;
 }
@@ -170,7 +216,7 @@ const backgroundCircles = [
     position: absolute;
     width: 134px;
     height: 5px;
-    top: 21px;
+    top: 21px; /* Relative to progress-bar */
     border-radius: 100px;
 }
 
@@ -182,10 +228,10 @@ const backgroundCircles = [
     background: transparent;
 }
 
-/* Eyes */
+/* Eyes - Positions are relative to .loading-content-wrapper */
 .eye {
     position: absolute;
-    top: 313px;
+    top: 313px; /* Adjust top relative to your loading-content-wrapper height */
     width: 10px;
     height: 30px;
     background: white;
@@ -193,7 +239,14 @@ const backgroundCircles = [
 }
 
 .eye.small {
-    left: 181px;
+    /* This 'left' value needs to be carefully considered.
+       If you want the eyes to appear visually "centered" as a pair/group,
+       you might need to adjust these precise pixel values based on
+       the width of your `.loading-content-wrapper`.
+       For example, if your design implies the eyes are roughly in the center,
+       you might put them in their own flex container and center that.
+    */
+    left: 181px; /* Original value, adjust if needed for your fixed wrapper size */
     width: 10px;
     height: 20px;
 }

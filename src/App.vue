@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import {RouterView} from 'vue-router'
 import AppLayout from "@/layout/AppLayout.vue";
-import {ref} from 'vue'
+import Loading from '@/components/common/Loading.vue'
+import {isLoading} from '@/stores/globalLoading'
 </script>
 
 <template>
-    <AppLayout>
+    <Loading v-if="isLoading"/>
+    <AppLayout v-else>
         <RouterView/>
     </AppLayout>
 </template>

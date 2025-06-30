@@ -1,8 +1,3 @@
-import {defineStore} from 'pinia'
+import {ref} from 'vue'
 
-export const useGlobalLoadingStore = defineStore({
-    id: 'global-loading',
-    state: () => ({
-        isLoading: false
-    })
-})
+export const isLoading = ref(false)

@@ -1,10 +1,10 @@
 <script setup>
 
-import ItemsList from "@/components/Items/ItemsList.vue";
+import ProductItems from "@/mock/ProductItems.vue";
 </script>
 
 <template>
-    <ItemsList/>
+    <ProductItems/>
 </template>
 
 <style scoped lang="scss">
