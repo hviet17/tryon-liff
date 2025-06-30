@@ -59,13 +59,20 @@ const backgroundCircles = [
 </script>
 
 <style scoped>
+
+
 .loading-container {
     width: 100%;
-    height: 100%;
-    position: relative;
+    height: 100vh; /* Use 100vh to ensure it takes the full viewport height */
+    position: relative; /* Keep relative for absolutely positioned children if you intend to center them relative to the container */
     background: #F8F8F8;
     overflow: hidden;
     font-family: 'SF Pro Text', sans-serif;
+
+    /* Flexbox for centering */
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
 }
 
 /* Blurred colorful background circles */

@@ -1,23 +1,23 @@
 @import './base.css';
 
 #app {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 10px 0;
-  font-weight: normal;
-  height: 100vh;
-  overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 0;
+    font-weight: normal;
+    height: 100vh;
+    overflow: hidden;
 }
 
 a,
 .green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+    text-decoration: none;
+    color: hsla(160, 100%, 37%, 1);
+    transition: 0.4s;
+    padding: 3px;
 }
 
 img {
-  max-width: 100%;
-  max-height: 300px;
+    max-width: 100%;
+    /*max-height: 300px;*/
 }

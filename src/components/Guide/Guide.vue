@@ -3,9 +3,15 @@ import Examples from '@/components/Examples/Examples.vue'
 import GreenTickIcon from '@/assets/icons/green-tick-icon.svg'
 import RedTickIcon from '@/assets/icons/red-tick-icon.svg'
 import {useRouter} from 'vue-router'
+import {isLoading} from '@/stores/globalLoading'
 
 const router = useRouter()
+
 const handleNext = () => {
+    isLoading.value = true
+    setTimeout(() => {
+        isLoading.value = false
+    }, 500)
     router.push('/result')
 }
 </script>
@@ -86,14 +92,16 @@ const handleNext = () => {
 }
 
 .guide-container {
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 0 auto;
 }
 
 .action-btn {
-    background-color: #3B3B3B;
+    background-color: #4853F9;
     color: #FFFFFF;
     border: none;
     border-radius: 8px;

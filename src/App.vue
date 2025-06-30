@@ -3,10 +3,10 @@ import {RouterView, useRouter} from 'vue-router'
 import AppLayout from "@/layout/AppLayout.vue";
 import WelcomeView from "@/views/WelcomeView.vue";
 import {onMounted, ref} from 'vue'
+import Loading from '@/components/common/Loading.vue'
 
 const showWelcome = ref(true);
 const router = useRouter()
-
 onMounted(() => {
     setTimeout(() => {
         showWelcome.value = false
@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <!--    <Loading v-if="isLoading"/>-->
+    <Loading v-if="true"/>
     <WelcomeView v-if="showWelcome"/>
     <AppLayout v-else>
         <RouterView/>
