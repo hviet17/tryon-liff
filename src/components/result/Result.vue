@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted, ref} from 'vue'; // Import ref, onMounted, onUnmounted
-import beforeImage from '@/assets/clothe.png'; // Assuming 'clothe.png' is your 'before' image
-import afterImage from '@/assets/base-clothe.png'; // **You'll need a second image for 'after'**
+import {onMounted, onUnmounted, ref} from 'vue';
+import beforeImage from '@/assets/clothe.png';
+import afterImage from '@/assets/base-clothe.png'; // Make sure you have this image
 
 const containerRef = ref<HTMLElement | null>(null);
 const afterImageRef = ref<HTMLElement | null>(null);
@@ -9,8 +9,11 @@ const sliderHandleRef = ref<HTMLElement | null>(null);
 
 let isDragging = false;
 
-const startDragging = () => {
+const startDragging = (e: MouseEvent | TouchEvent) => {
     isDragging = true;
+    // Immediately call onDrag once when dragging starts to set the initial position
+    // This ensures the image starts updating from the very first drag action.
+    onDrag(e);
 };
 
 const stopDragging = () => {
@@ -18,7 +21,10 @@ const stopDragging = () => {
 };
 
 const onDrag = (e: MouseEvent | TouchEvent) => {
-    if (!isDragging || !containerRef.value || !afterImageRef.value || !sliderHandleRef.value) return;
+    // Only proceed if we are in a dragging state AND have all elements
+    if (!isDragging || !containerRef.value || !afterImageRef.value || !sliderHandleRef.value) {
+        return;
+    }
 
     const containerRect = containerRef.value.getBoundingClientRect();
     let clientX: number;
@@ -31,23 +37,35 @@ const onDrag = (e: MouseEvent | TouchEvent) => {
         return;
     }
 
+    // Calculate x relative to the container
     let x = clientX - containerRect.left;
 
-    // Constrain the slider within the image container
+    // Constrain the slider within the image container boundaries
     if (x < 0) x = 0;
     if (x > containerRect.width) x = containerRect.width;
 
     const percentage = (x / containerRect.width) * 100;
 
+    // Update the clip-path for the "after" image in real-time
     afterImageRef.value.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+
+    // Update the position of the slider handle
     sliderHandleRef.value.style.left = `${percentage}%`;
 };
 
 onMounted(() => {
+    // These listeners need to be on the window for continuous drag even if cursor leaves container
     window.addEventListener('mouseup', stopDragging);
     window.addEventListener('touchend', stopDragging);
     window.addEventListener('mousemove', onDrag);
     window.addEventListener('touchmove', onDrag);
+
+    // Initial positioning of the slider and clip-path for consistency
+    // This sets the slider to the far left and after image completely hidden
+    if (afterImageRef.value && sliderHandleRef.value) {
+        afterImageRef.value.style.clipPath = `inset(0 100% 0 0)`;
+        sliderHandleRef.value.style.left = `0%`;
+    }
 });
 
 onUnmounted(() => {
@@ -56,7 +74,6 @@ onUnmounted(() => {
     window.removeEventListener('mousemove', onDrag);
     window.removeEventListener('touchmove', onDrag);
 });
-
 </script>
 
 <template>
@@ -81,7 +98,8 @@ onUnmounted(() => {
                 <div class="center">
                     <div class="item">
                         <div class="img">
-                            <img :src="beforeImage" alt=""></div>
+                            <img :src="beforeImage" alt="">
+                        </div>
                         <div class="item-info">
                             <div class="name">Shirt</div>
                             <div class="info">wwwwww</div>
@@ -93,7 +111,6 @@ onUnmounted(() => {
         </div>
     </div>
 </template>
-
 <style scoped lang="scss">
 .img-result {
     height: 350px;
@@ -247,13 +264,13 @@ onUnmounted(() => {
 .after-image {
     /* Initially, half of the after image is hidden. */
     /* JavaScript will update this clip-path value. */
-    clip-path: inset(0 0 0 50%);
+    clip-path: inset(0 0 0 5%);
 }
 
 .slider-handle {
     position: absolute;
     top: 0;
-    left: 50%; /* Start in the middle */
+    left: 5%; /* Start in the middle */
     width: 4px; /* The width of your "white line" */
     height: 100%;
     background-color: white; /* Your "white line" color */

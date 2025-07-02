@@ -60,6 +60,8 @@ const handleNext = () => {
     height: 148px;
     overflow-x: auto;
     width: 100%;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 .example-title {
