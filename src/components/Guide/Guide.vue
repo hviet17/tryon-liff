@@ -11,8 +11,8 @@ const handleNext = () => {
     isLoading.value = true
     setTimeout(() => {
         isLoading.value = false
-        router.push('/camera')
-    }, 500)
+        router.push('/mock/camera')
+    }, 1500)
 }
 </script>
 
@@ -48,7 +48,7 @@ const handleNext = () => {
 
 <style scoped lang="scss">
 .title {
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-weight: 700;
     font-size: 26px;
     line-height: 100%;
@@ -67,7 +67,7 @@ const handleNext = () => {
 
     .title {
         display: inline-block;
-        font-family: Roboto;
+        font-family: Roboto, serif;
         font-weight: 700;
         font-size: 15px;
         line-height: 100%;
@@ -84,7 +84,7 @@ const handleNext = () => {
 .desc {
     margin-top: 8px;
     color: #777777;
-    font-family: Roboto;
+    font-family: Roboto, serif;
     font-weight: 400;
     font-size: 13px;
     line-height: 100%;

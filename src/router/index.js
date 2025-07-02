@@ -21,24 +21,24 @@ const router = createRouter({
             component: WelcomeView,
         },
         {
-            path: '/main',
+            path: '/mock/main',
             name: 'main',
             component: MainView
         }, {
-            path: '/detail',
+            path: '/mock/detail',
             name: 'detail',
             component: ProductPage
         }, {
-            path: '/guide',
+            path: '/mock/guide',
             name: 'guide',
             component: Guide
         }, {
-            path: '/result',
+            path: '/mock/result',
             name: 'result',
             component: Result
         },
         {
-            path: '/camera',
+            path: '/mock/camera',
             name: 'camera',
             component: CameraScan
         }
