@@ -9,6 +9,7 @@ import CameraScan from "@/mock/CameraScan.vue";
 import Home from "@/views/Home.vue";
 import RealGuide from "@/views/Guide.vue";
 import Scanning from "@/views/Scanning.vue";
+import ShareMenu from "@/mock/ShareMenu.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
