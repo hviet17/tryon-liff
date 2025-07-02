@@ -12,7 +12,6 @@ import badImage2 from '@/assets/images/bad/image (3).png'
 import badImage3 from '@/assets/images/bad/2fcb2971e82fe9f81824ec99d697b176986eb9e5.png'
 import badImage4 from '@/assets/images/bad/870b3bc6dc0fc18bd8a7732f1c37faa035a944c0.png'
 import badImage5 from '@/assets/images/bad/149eca8da00d4fb585a97d72f4e0e04af017be75.png'
-import {storeToRefs} from 'pinia'
 import {useRouter} from "vue-router";
 import {useGlobal} from "@/composables/global";
 
