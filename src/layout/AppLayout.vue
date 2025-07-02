@@ -42,5 +42,6 @@ import CloseIcon from '@/assets/icons/close-icon.svg'
 .content {
     height: 90%;
     overflow: auto;
+    padding-top: 32px;
 }
 </style>

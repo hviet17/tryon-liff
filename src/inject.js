@@ -80,19 +80,19 @@ rect.bar3 {
 `;
 document.head.appendChild(style);
 const swiperContainer = document.querySelector('.swiper');
-const liffUrl = "https://tryon-liff.pages.dev"
-// const liffUrl = "https://vietho.localhost:5175"
+// const liffUrl = "https://tryon-liff.pages.dev"
+const liffUrl = "https://vietho.localhost:5175"
 if (swiperContainer) {
     swiperContainer?.appendChild(iconDiv);
     iconDiv.addEventListener('click', () => {
         const activeImgSrc = document.querySelector('.swiper-slide-active img')?.src;
         const encodedImgSrc = encodeURIComponent(activeImgSrc);
-        const popupWidth = 600;
-        const popupHeight = 500;
+        const popupWidth = 430;
+        const popupHeight = 932;
         const left = window.screenX + (window.outerWidth - popupWidth) / 2;
         const top = window.screenY + (window.outerHeight - popupHeight) / 2;
         window.open(
-            `${liffUrl}/#url=${encodedImgSrc}`,
+            `${liffUrl}/guide#url=${encodedImgSrc}`,
             'popupWindow',
             `width=${popupWidth},height=${popupHeight},left=${left},top=${top},menubar=no,toolbar=no,status=no,resizable=no,scrollbars=no`
         );
