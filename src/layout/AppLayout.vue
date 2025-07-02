@@ -12,22 +12,28 @@ const openShareMenu = () => {
 };
 </script>
 <template>
-    <div class="app-header">
-        <div class="title">ZoZo Town</div>
-        <button class="button" @click="openShareMenu">
-            <ShareIcon/>
-        </button>
-        <button class="button">
-            <CloseIcon/>
-        </button>
-    </div>
-    <div class="content">
-        <slot></slot>
-        <ShareMenu ref="shareMenuRef"/>
+    <div class="app-layout">
+        <div class="app-header">
+            <div class="title">ZoZo Town</div>
+            <button class="button" @click="openShareMenu">
+                <ShareIcon/>
+            </button>
+            <button class="button">
+                <CloseIcon/>
+            </button>
+        </div>
+        <div class="content">
+            <slot></slot>
+            <ShareMenu ref="shareMenuRef"/>
+        </div>
     </div>
 </template>
 
 <style scoped lang="scss">
+.app-layout {
+    height: 100%;
+    background-color: transparent;
+}
 
 .app-header {
     display: flex;
