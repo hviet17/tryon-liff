@@ -1,15 +1,29 @@
-<script setup>
+<script setup lang="ts">
 import CloseIcon from '@/assets/icons/close-icon.svg'
+import ShareIcon from '@/assets/icons/share-icon.svg'
+import ShareMenu from "@/mock/ShareMenu.vue";
+import {ref} from 'vue'
+
+const shareMenuRef = ref(null); // Create a ref to access the ShareMenu component instance
+const openShareMenu = () => {
+    if (shareMenuRef.value) {
+        shareMenuRef.value.show(); // Call the exposed 'show' method on the ShareMenu
+    }
+};
 </script>
 <template>
     <div class="app-header">
         <div class="title">ZoZo Town</div>
+        <button class="button" @click="openShareMenu">
+            <ShareIcon/>
+        </button>
         <button class="button">
             <CloseIcon/>
         </button>
     </div>
     <div class="content">
         <slot></slot>
+        <ShareMenu ref="shareMenuRef"/>
     </div>
 </template>
 
