@@ -9,6 +9,7 @@ import Home from "@/views/Home.vue";
 import RealGuide from "@/views/Guide.vue";
 import Scanning from "@/views/Scanning.vue";
 import MainView from "@/mock/MainView.vue";
+import Processing from "@/views/Processing.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,14 @@ const router = createRouter({
             path: '/scanning',
             name: 'scanning',
             component: Scanning,
+            meta: {
+                fullScreen: true
+            }
+        },
+        {
+            path: '/processing',
+            name: 'processing',
+            component: Processing,
             meta: {
                 fullScreen: true
             }
