@@ -13,6 +13,8 @@ import {isLoading} from '@/stores/globalLoading'
 </template>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
     width: 100vh;
     height: 100vh;

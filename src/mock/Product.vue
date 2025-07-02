@@ -8,8 +8,8 @@ const handleAIFit = () => {
     isLoading.value = true
     setTimeout(() => {
         isLoading.value = false
-        router.push('/result')
-    }, 700)
+        router.push('/mock/guide')
+    }, 1000)
 }
 </script>
 

@@ -3,7 +3,7 @@ import {useRouter} from 'vue-router'
 
 const router = useRouter()
 const handleItemSelect = () => {
-    router.push('/detail')
+    router.push('/mock/detail')
 }
 </script>
 <template>

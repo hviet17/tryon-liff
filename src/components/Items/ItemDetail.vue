@@ -9,7 +9,7 @@ const props = defineProps<{
 const route = useRoute()
 const router = useRouter()
 const handleClick = () => {
-    router.push('/guide')
+    router.push('/mock/guide')
 }
 </script>
 
