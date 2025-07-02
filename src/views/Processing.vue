@@ -1,5 +1,23 @@
 <script setup lang="ts">
 import loading from '@/assets/icons/loading-icon.png'
+import {useGlobal} from "@/composables/global";
+import {urlToBlob, dataURLToBlob} from "@/helper.js";
+import {onMounted} from "vue";
+import {generateImage} from "@/services/generate.js";
+
+const {clothingSrc, profileSrc} = useGlobal()
+
+onMounted(async () => {
+  if (!clothingSrc.value || !profileSrc.value) return;
+
+  const clothingBlob = await urlToBlob(clothingSrc.value);
+  const profileBlob = await dataURLToBlob(profileSrc.value);
+  let result = null;
+  if (profileSrc.value) {
+    result = await generateImage(profileBlob, clothingBlob)
+  }
+  return result;
+})
 </script>
 <template>
   <div class="loading-container">

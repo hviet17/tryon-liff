@@ -2,7 +2,6 @@ import {createRouter, createWebHistory} from 'vue-router'
 import WelcomeView from "@/views/WelcomeView.vue";
 import Guide from "@/components/Guide/Guide.vue";
 import Result from "@/components/result/Result.vue";
-import TryOn from "@/views/TryOn.vue";
 import ProductPage from "@/mock/ProductPage.vue";
 import CameraScan from "@/mock/CameraScan.vue";
 import Home from "@/views/Home.vue";
@@ -44,11 +43,6 @@ const router = createRouter({
             meta: {
                 fullScreen: true
             }
-        },
-        {
-            path: '/try-on',
-            name: 'try-on',
-            component: TryOn,
         },
         {
             path: '/mock/main',

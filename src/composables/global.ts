@@ -1,12 +1,12 @@
 import {storeToRefs} from "pinia";
-
 import { useGlobalStore } from '@/stores/global'
 
 export const useGlobal = () => {
     const store = useGlobalStore()
-    const { profileSrc } = storeToRefs(store)
+    const { profileSrc, clothingSrc } = storeToRefs(store)
 
     return {
-        profileSrc
+        profileSrc,
+        clothingSrc
     }
 }
