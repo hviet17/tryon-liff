@@ -61,9 +61,9 @@ const handleNext = () => {
       <div class="examples-section">
         <div class="example-title">
           <GreenTickIcon/>
-          <p class="title">
+          <div class="title-text">
             Good Examples
-          </p>
+          </div>
         </div>
         <swiper
             :slidesPerView="2.5"
@@ -79,7 +79,7 @@ const handleNext = () => {
       <div class="examples-section">
         <div class="example-title">
           <RedTickIcon/>
-          <div class="title">
+          <div class="title-text">
             Bad Examples
           </div>
         </div>
@@ -119,9 +119,13 @@ const handleNext = () => {
 }
 
 .example-title {
-  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 5px;
+  margin-bottom: 12px;
 
-  .title {
+  .title-text {
     display: inline-block;
     font-family: Roboto, serif;
     font-weight: 700;
@@ -129,8 +133,6 @@ const handleNext = () => {
     line-height: 100%;
     letter-spacing: 0px;
     color: #000000;
-    margin-left: 5px;
-    margin-bottom: 12px;
   }
 }
 
@@ -160,6 +162,7 @@ const handleNext = () => {
   border-radius: 8px;
   height: 48px;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .my-slide {

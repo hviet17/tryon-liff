@@ -17,8 +17,7 @@ import {isLoading} from '@/stores/globalLoading'
 
 body {
     scroll-behavior: smooth;
-    width: 100vh;
-    height: 100vh;
+    height: 100dvh;
     box-sizing: border-box;
 }
 </style>
