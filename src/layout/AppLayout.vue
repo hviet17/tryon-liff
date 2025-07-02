@@ -20,7 +20,6 @@ import CloseIcon from '@/assets/icons/close-icon.svg'
     justify-content: flex-end;
     align-items: center;
     position: relative;
-    margin-top: 50px;
 
     .title {
         position: absolute;
