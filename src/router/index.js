@@ -5,6 +5,7 @@ import Guide from "@/components/Guide/Guide.vue";
 import Result from "@/components/result/Result.vue";
 import Home from "@/views/Home.vue";
 import ProductPage from "@/mock/ProductPage.vue";
+import CameraScan from "@/mock/CameraScan.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +36,11 @@ const router = createRouter({
             path: '/result',
             name: 'result',
             component: Result
+        },
+        {
+            path: '/camera',
+            name: 'camera',
+            component: CameraScan
         }
     ],
 })

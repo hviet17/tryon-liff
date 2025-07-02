@@ -11,8 +11,8 @@ const handleNext = () => {
     isLoading.value = true
     setTimeout(() => {
         isLoading.value = false
+        router.push('/camera')
     }, 500)
-    router.push('/result')
 }
 </script>
 
