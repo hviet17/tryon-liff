@@ -1,15 +1,23 @@
 <script setup lang="ts">
-import {RouterView} from 'vue-router'
+import {RouterView, useRoute} from 'vue-router'
 import AppLayout from "@/layout/AppLayout.vue";
 import Loading from '@/components/common/Loading.vue'
 import {isLoading} from '@/stores/globalLoading'
+import FullLayout from "@/layout/FullLayout.vue";
+const route = useRoute()
 </script>
 
 <template>
-    <Loading v-if="isLoading"/>
+  <Loading v-if="isLoading"/>
+  <template v-else>
+    <FullLayout v-if="route.meta && route.meta.fullScreen">
+      <RouterView/>
+    </FullLayout>
     <AppLayout v-else>
-        <RouterView/>
+      <RouterView/>
     </AppLayout>
+  </template>
+
 </template>
 
 <style lang="scss" scoped>
