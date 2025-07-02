@@ -20,6 +20,8 @@ import CloseIcon from '@/assets/icons/close-icon.svg'
     justify-content: flex-end;
     align-items: center;
     position: relative;
+    padding: 10px 0;
+    height: 50px;
 
     .title {
         position: absolute;
@@ -40,7 +42,8 @@ import CloseIcon from '@/assets/icons/close-icon.svg'
 }
 
 .content {
-    height: 90%;
+    height: calc(100vh - 50px);
     overflow: auto;
+    padding: 32px 0;
 }
 </style>

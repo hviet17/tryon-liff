@@ -6,12 +6,17 @@ import {useRouter} from 'vue-router'
 import {isLoading} from '@/stores/globalLoading'
 
 const router = useRouter()
+const props = defineProps({
+    redirectName: {
+        type: String,
+        default: 'guide'
+}})
 
 const handleNext = () => {
     isLoading.value = true
     setTimeout(() => {
         isLoading.value = false
-        router.push('/mock/camera')
+        router.push({name: props.redirectName})
     }, 1500)
 }
 </script>
