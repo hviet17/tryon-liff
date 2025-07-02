@@ -3,21 +3,18 @@ import Examples from '@/components/Examples/Examples.vue'
 import GreenTickIcon from '@/assets/icons/green-tick-icon.svg'
 import RedTickIcon from '@/assets/icons/red-tick-icon.svg'
 import {useRouter} from 'vue-router'
-import {isLoading} from '@/stores/globalLoading'
 
 const router = useRouter()
 const props = defineProps({
     redirectName: {
         type: String,
         default: 'guide'
-}})
+    }
+})
 
 const handleNext = () => {
-    isLoading.value = true
-    setTimeout(() => {
-        isLoading.value = false
-        router.push({name: props.redirectName})
-    }, 1500)
+
+    router.push('/mock/camera')
 }
 </script>
 

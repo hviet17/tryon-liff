@@ -61,7 +61,10 @@ const router = createRouter({
         {
             path: '/mock/camera',
             name: 'camera',
-            component: CameraScan
+            component: CameraScan,
+            meta: {
+                fullScreen: true
+            }
         }
     ],
 })
