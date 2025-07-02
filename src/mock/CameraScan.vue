@@ -19,8 +19,10 @@
 
 <script setup>
 import {computed, onMounted, ref, watch} from 'vue';
-import imgSrc from '@/assets/clothe.png' // Assuming this path is correct for your default image
+import imgSrc from '@/assets/clothe.png'
+import {useRouter} from "vue-router"; // Assuming this path is correct for your default image
 
+const router = useRouter()
 const props = defineProps({
     imageUrl: {
         type: String,
@@ -115,6 +117,7 @@ const handleScanEnd = () => {
     // When the transition ends for the scan line (top: 100%)
     if (scanProgress.value === 1) {
         resetScan();
+        router.push('/mock/result')
     }
 };
 
