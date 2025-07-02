@@ -42,7 +42,7 @@ import CloseIcon from '@/assets/icons/close-icon.svg'
 }
 
 .content {
-    height: calc(100vh - 50px);
+    height: calc(100dvh - 50px);
     overflow: auto;
     padding: 32px 0;
 }
