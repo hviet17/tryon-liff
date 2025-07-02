@@ -17,7 +17,7 @@ const openShareMenu = () => {
         <button class="button" @click="openShareMenu">
             <ShareIcon/>
         </button>
-        <button class="button">
+        <button class="button" @click="window.close()">
             <CloseIcon/>
         </button>
     </div>

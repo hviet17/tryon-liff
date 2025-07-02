@@ -14,6 +14,9 @@ import badImage4 from '@/assets/images/bad/870b3bc6dc0fc18bd8a7732f1c37faa035a94
 import badImage5 from '@/assets/images/bad/149eca8da00d4fb585a97d72f4e0e04af017be75.png'
 import {useRouter} from "vue-router";
 import {useGlobal} from "@/composables/global";
+import {onMounted} from "vue";
+import {CLOTHES_SRC_KEY} from "@/const"
+import {isValidUrl} from "@/helper.js";
 
 const goodImages = [
   goodImage1,
@@ -31,7 +34,7 @@ const badImages = [
   badImage5
 ]
 const router = useRouter()
-const {profileSrc} = useGlobal()
+const {profileSrc, clothingSrc} = useGlobal()
 
 const onProfileChange = (e) => {
   const file = e.target.files[0];
@@ -49,6 +52,17 @@ const onProfileChange = (e) => {
 const handleNext = () => {
   document.getElementById('fileInput').click()
 }
+
+onMounted(() => {
+  const hash = window.location.hash.substring(1);
+  const params = new URLSearchParams(hash);
+  const encodedUrl = params.get("url") || localStorage.getItem(CLOTHES_SRC_KEY);
+
+  if (encodedUrl && isValidUrl(encodedUrl)) {
+    clothingSrc.value = encodedUrl;
+    localStorage.setItem(CLOTHES_SRC_KEY, "");
+  }
+})
 </script>
 
 <template>
