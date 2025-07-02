@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import WelcomeView from "@/views/WelcomeView.vue";
-import MainView from "@/views/MainView.vue";
+import MainView from "@/mock/MainView.vue";
 import Guide from "@/components/Guide/Guide.vue";
 import Result from "@/components/result/Result.vue";
 import TryOn from "@/views/TryOn.vue";
@@ -8,6 +8,7 @@ import ProductPage from "@/mock/ProductPage.vue";
 import CameraScan from "@/mock/CameraScan.vue";
 import Home from "@/views/Home.vue";
 import RealGuide from "@/views/Guide.vue";
+import Scanning from "@/views/Scanning.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,14 @@ const router = createRouter({
             path: '/guide',
             name: 'real-guide',
             component: RealGuide
+        },
+        {
+            path: '/scanning',
+            name: 'scanning',
+            component: Scanning,
+            meta: {
+                fullScreen: true
+            }
         },
         {
             path: '/try-on',

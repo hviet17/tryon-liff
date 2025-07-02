@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination } from 'swiper/modules';
 import GreenTickIcon from '@/assets/icons/green-tick-icon.svg'
 import RedTickIcon from '@/assets/icons/red-tick-icon.svg'
-import {useRouter} from 'vue-router'
 import goodImage1 from '@/assets/images/good/image.png'
 import goodImage2 from '@/assets/images/good/image (1).png'
 import goodImage3 from '@/assets/images/good/466ee505aede5e2e2358f0f99ba181485916013c.png'
@@ -14,13 +12,9 @@ import badImage2 from '@/assets/images/bad/image (3).png'
 import badImage3 from '@/assets/images/bad/2fcb2971e82fe9f81824ec99d697b176986eb9e5.png'
 import badImage4 from '@/assets/images/bad/870b3bc6dc0fc18bd8a7732f1c37faa035a944c0.png'
 import badImage5 from '@/assets/images/bad/149eca8da00d4fb585a97d72f4e0e04af017be75.png'
-
-const router = useRouter()
-const props = defineProps({
-  redirectName: {
-    type: String,
-    default: 'guide'
-  }})
+import {storeToRefs} from 'pinia'
+import {useRouter} from "vue-router";
+import {useGlobal} from "@/composables/global";
 
 const goodImages = [
   goodImage1,
@@ -37,13 +31,17 @@ const badImages = [
   badImage4,
   badImage5
 ]
+const router = useRouter()
+const {profileSrc} = useGlobal()
 
 const onProfileChange = (e) => {
   const file = e.target.files[0];
   if (file) {
+    profileSrc.value = file;
     const reader = new FileReader();
     reader.onload = function(event) {
-      const dataUrl = event.target.result;  // base64 encoded image
+      profileSrc.value = event.target.result; // base64 encoded image
+      router.push({ name: 'scanning' }); // Navigate to the next step
     }
     reader.readAsDataURL(file);
   }
@@ -156,12 +154,13 @@ const handleNext = () => {
 }
 
 .action-btn {
-  background-color: #4853F9;
+  background: #2F2F2F;
   color: #FFFFFF;
   border: none;
   border-radius: 8px;
   height: 48px;
   font-weight: 700;
+  font-size: 15px;
   flex-shrink: 0;
 }
 
