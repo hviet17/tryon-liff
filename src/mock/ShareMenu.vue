@@ -1,5 +1,5 @@
 <template>
-    <div class="share-menu-overlay" v-if="showMenu" @click.self="hideMenu">
+    <div class="share-menu-overlay" v-show="showMenu" @click.self="hideMenu">
         <Transition name="slide-up">
             <div v-if="showMenu" class="share-menu-container" data-mode="Light" data-type="Menu">
                 <div class="menu-background"></div>
@@ -113,7 +113,7 @@ const profiles = ref([
 /* Share Menu Container (Styles adjusted for positioning within overlay) */
 .share-menu-container {
     /* Original width and height, but position relative to the flex container */
-    width: 375px; /* Consistent with your header section's width */
+    width: 100%; /* Consistent with your header section's width */
     height: 393px;
     position: relative; /* Keep this for internal absolute positioning */
     background: white; /* Ensure menu has a background when sliding up */
@@ -126,7 +126,7 @@ const profiles = ref([
 /* Vue Transition Classes */
 .slide-up-enter-active,
 .slide-up-leave-active {
-    transition: transform 0.8s ease-out; /* Adjust duration and easing as needed */
+    transition: transform 0.2s ease-out; /* Adjust duration and easing as needed */
 }
 
 .slide-up-enter-from,

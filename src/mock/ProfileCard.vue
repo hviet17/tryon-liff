@@ -60,7 +60,7 @@ const getSubImageClass = (index) => {
 
 .profile-name {
     width: 62px;
-    height: 26px;
+    height: 100%;
     left: 0px;
     top: 70px;
     position: absolute;
