@@ -252,6 +252,8 @@ onUnmounted(() => {
     justify-content: space-between;
     border-radius: 30px;
     padding: 25px 0px;
+    border: 1px rgba(255, 255, 255, 0.10) solid;
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.10);
     background: linear-gradient(157deg,
         #2D2D2D 0%,
         #939393 60%,
