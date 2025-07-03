@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, ref} from 'vue';
-import beforeImage from '@/assets/clothe.png';
-import afterImage from '@/assets/base-clothe.png'; // Make sure you have this image
+import beforeImage from '@/assets/base-clothe.png';
+import afterImage from '@/assets/main-pic.png'; // Make sure you have this image
 import BuyIcon from '@/assets/icons/buy-icon.svg'
 
 const containerRef = ref<HTMLElement | null>(null);
@@ -64,8 +64,8 @@ onMounted(() => {
     // Initial positioning of the slider and clip-path for consistency
     // This sets the slider to the far left and after image completely hidden
     if (afterImageRef.value && sliderHandleRef.value) {
-        afterImageRef.value.style.clipPath = `inset(0 100% 0 0)`;
-        sliderHandleRef.value.style.left = `0%`;
+        afterImageRef.value.style.clipPath = `inset(10% 90% 0 0)`;
+        sliderHandleRef.value.style.left = `10%`;
     }
 });
 
@@ -80,6 +80,8 @@ onUnmounted(() => {
 <template>
     <div class="result-wrapper">
         <div class="result-container">
+            <div class="top-stick"></div>
+            <div class="bottom-stick"></div>
             <div class="summary-container">
                 <div class="img-result image-comparison-container" ref="containerRef">
                     <img :src="beforeImage" alt="Before Image" class="comparison-image before-image">
@@ -103,9 +105,9 @@ onUnmounted(() => {
                                 <img :src="beforeImage" alt="">
                             </div>
                             <div class="item-info">
-                                <div class="name">Shirt</div>
+                                <div class="name">SHIRT</div>
                                 <div class="info">wwwwww</div>
-                                <div class="price">$2000</div>
+                                <div class="price">￥2000</div>
                             </div>
                         </div>
                     </div>
@@ -120,6 +122,32 @@ onUnmounted(() => {
     </div>
 </template>
 <style scoped lang="scss">
+.bottom-stick {
+    width: 1000px;
+    height: 5px;
+    transform: rotate(-19deg) translate(-200px, 320px);
+    transform-origin: left top;
+    background: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4);
+    filter: blur(1px);
+    border-radius: 5px;
+}
+
+.top-stick {
+    width: 1000px;
+    height: 2px;
+    transform: rotate(15deg) translate(-100px, 200px);
+    transform-origin: top left;
+    background: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4);
+    filter: blur(1px);
+    border-radius: 5px;
+}
+
 .img-result {
     height: 350px;
     overflow: hidden;
@@ -130,16 +158,18 @@ onUnmounted(() => {
 .summary-container {
     width: 90%;
     margin: 0 auto;
+
 }
 
 .summary {
     display: flex;
     flex-direction: column;
-    height: 184px;
+    height: 100%;
     width: 100%;
     //padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
+
 }
 
 .item {
@@ -160,21 +190,20 @@ onUnmounted(() => {
     }
 
     .name {
+        font-size: 14px;
         font-family: Roboto, sans-serif;
         font-weight: 600;
-        font-size: 12px;
-        line-height: 13px;
-        letter-spacing: 0px;
+        line-height: 9.48px;
+        word-wrap: break-word;
         color: #FFFFFF;
     }
 
     .info {
+        color: #B2B2B2;
+        font-size: 13px;
         font-family: Roboto, sans-serif;
         font-weight: 400;
-        font-size: 13px;
-        line-height: 20px;
-        letter-spacing: 0px;
-        color: #B2B2B2;
+        word-wrap: break-word
     }
 }
 
@@ -228,6 +257,7 @@ onUnmounted(() => {
     justify-content: center;
     align-items: center;
     gap: 5px;
+    margin-top: 20px;
 }
 
 
@@ -253,6 +283,8 @@ onUnmounted(() => {
     justify-content: space-between;
     border-radius: 30px;
     padding: 25px 0px;
+    border: 1px rgba(255, 255, 255, 0.10) solid;
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.10);
     background: linear-gradient(157deg,
         #2D2D2D 0%,
         #939393 60%,

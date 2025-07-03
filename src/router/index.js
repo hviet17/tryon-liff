@@ -22,6 +22,10 @@ const router = createRouter({
             path: '/welcome',
             name: 'welcome',
             component: WelcomeView,
+            meta: {
+                noHeader: true,
+                fullScreen: true,
+            }
         },
         {
             path: '/guide',

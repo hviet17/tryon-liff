@@ -2,7 +2,7 @@
 import CloseIcon from '@/assets/icons/close-icon.svg'
 import ShareIcon from '@/assets/icons/share-icon.svg'
 import ShareMenu from "@/mock/ShareMenu.vue";
-import {ref, watch} from 'vue'
+import {ref} from 'vue'
 import {useRoute} from 'vue-router'
 
 const route = useRoute()
@@ -12,14 +12,12 @@ const openShareMenu = () => {
         shareMenuRef.value.show(); // Call the exposed 'show' method on the ShareMenu
     }
 };
-watch(route, () => {
-    console.log(route.name);
-})
+
 </script>
 <template>
 
     <div class="app-layout">
-        <div class="app-header" :class="{'white-text':route.meta.whiteTxt}">
+        <div v-if="!route.meta.noHeader" class="app-header" :class="{'white-text':route.meta.whiteTxt}">
             <div :class="{title:true }">ZoZo Town
             </div>
             <button class="button" @click="openShareMenu">
