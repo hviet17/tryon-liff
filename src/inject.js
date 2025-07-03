@@ -2,7 +2,7 @@ const style = document.createElement('style');
 style.textContent = `
     .icon {
       position: absolute;
-      bottom: 20px;
+      bottom: 90px;
       left: 50%;
       transform: translateX(-50%);
       background-color: white;
@@ -68,7 +68,7 @@ iconDiv.innerHTML = `
     </svg>
     <div>Try On With AI</div>
   `;
-const swiperContainer = document.querySelector('.swiper');
+const swiperContainer = document.querySelector('#goods-image-carousel');
 const liffUrl = "https://tryon-liff.pages.dev"
 // const liffUrl = "https://vietho.localhost:5175"
 if (swiperContainer) {
@@ -77,9 +77,10 @@ if (swiperContainer) {
         const activeImgSrc = document.querySelector('.swiper-slide-active img')?.src;
         const encodedImgSrc = encodeURIComponent(activeImgSrc);
         // Get product name
-        const productName = document.querySelector('.p-goods-information__heading')?.innerText.trim();
+        const productName = document.querySelector('.p-goods-information__heading')?.innerText.trim() || document.querySelector('.p-goods-item-summary-body__heading')?.textContent.trim()
         // Get product price
-        const productPrice = document.querySelector('.p-goods-information__price')?.childNodes[0].nodeValue.trim();
+        const productPrice = document.querySelector('.p-goods-information__price')?.childNodes[0].nodeValue.trim() || document.querySelector('.p-goods-item-summary-body__price--discount')?.textContent.trim()
+        ;
 
         const popupWidth = 430;
         const popupHeight = 932;
