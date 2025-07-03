@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="profile-grid">
-                    <ProfileCard v-for="profile in profiles" :key="profile.name" :profile="profile"/>
+                    <ProfileCard v-for="profile in profiles" :key="profile.name" :profile="profile" @click="hideMenu"/>
                     <div class="more-profile-card">
                         <div class="profile-name">More</div>
                         <div class="more-icon-wrapper" data-icon-type="More" data-mode="Light">
