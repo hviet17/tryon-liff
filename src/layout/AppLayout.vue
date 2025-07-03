@@ -5,104 +5,133 @@ import ShareMenu from "@/mock/ShareMenu.vue";
 import {ref} from 'vue'
 import {useRoute} from 'vue-router'
 import {useGlobal} from "@/composables/global";
+import {CLOTHES_SRC_KEY, PRODUCT_URL_KEY, PRODUCT_PRICE_KEY, PRODUCT_TITLE_KEY} from "@/const"
 
 const route = useRoute()
 const shareMenuRef = ref(null); // Create a ref to access the ShareMenu component instance
 const {resultSrc} = useGlobal()
 
 const share = () => {
-  // if (!resultSrc.value) return;
+  if (!resultSrc.value) {
+    alert("No image to share.");
+    return;
+  }
+
+  const clothesSrc = decodeURIComponent(localStorage.getItem(CLOTHES_SRC_KEY)) || '';
+  const productUrl = decodeURIComponent(localStorage.getItem(PRODUCT_URL_KEY)) || '';
+  const productTitle = localStorage.getItem(PRODUCT_TITLE_KEY) || '';
+  const productPrice = decodeURIComponent(localStorage.getItem(PRODUCT_PRICE_KEY)) || '';
+
+  const contents = {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": resultSrc.value,
+      "size": "full",
+      "aspectRatio": "220:300",
+      "aspectMode": "cover",
+      "action": {
+        "type": "uri",
+        "uri": resultSrc.value
+      },
+      "align": "start"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": []
+            },
+            {
+              "type": "text",
+              "text": "Hello LINE AI Fit!",
+              "size": "lg",
+              "weight": "bold"
+            },
+            {
+              "type": "text",
+              "text": "Gorgeous looks!",
+              "size": "lg",
+              "weight": "bold"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": clothesSrc,
+                  "aspectMode": "cover",
+                  "align": "start"
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": productTitle
+                    },
+                    {
+                      "type": "text",
+                      "text": productPrice,
+                      "weight": "bold"
+                    }
+                  ],
+                  "action": {
+                    "type": "uri",
+                    "label": "action",
+                    "uri": productUrl
+                  }
+                }
+              ],
+              "paddingTop": "10px",
+              "paddingBottom": "16px"
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "sm",
+      "contents": [
+        {
+          "type": "button",
+          "style": "link",
+          "height": "sm",
+          "action": {
+            "type": "uri",
+            "label": "Go to Ai Fit",
+            "uri": `https://tryon-liff.pages.dev/result?clothesImg=${encodeURIComponent(clothesSrc)}&title=${productTitle}&price=${productPrice}&url=${encodeURIComponent(productUrl)}`,
+          },
+          "color": "#ffffff"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [],
+          "margin": "sm"
+        }
+      ],
+      "flex": 0,
+      "backgroundColor": "#000000"
+    }
+  }
+  console.log(contents);
+  // return;
   const data = [{
     type: "flex",
     altText: "This is a Flex Message",
-    contents: {
-      "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://developers-resource.landpress.line.me/fx/img/01_1_cafe.png",
-        "size": "full",
-        "aspectRatio": "20:13",
-        "aspectMode": "cover",
-        "action": {
-          "type": "uri",
-          "uri": "https://line.me/"
-        }
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": []
-              },
-              {
-                "type": "text",
-                "text": "Hello LINE AI Fit!",
-                "size": "lg",
-                "weight": "bold"
-              },
-              {
-                "type": "text",
-                "text": "Goreous looks!",
-                "size": "lg",
-                "weight": "bold"
-              },
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "image",
-                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-                    "aspectMode": "cover",
-                    "align": "start"
-                  },
-                  {
-                    "type": "text",
-                    "text": "hello, world",
-                    "size": "sm"
-                  }
-                ],
-                "paddingTop": "10px",
-                "paddingBottom": "16px"
-              }
-            ]
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "vertical",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "button",
-            "style": "link",
-            "height": "sm",
-            "action": {
-              "type": "uri",
-              "label": "Go to Ai Fit",
-              "uri": "https://line.me/"
-            },
-            "color": "#ffffff"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [],
-            "margin": "sm"
-          }
-        ],
-        "flex": 0,
-        "backgroundColor": "#000000"
-      }
-    }
+    contents
   }]
   if (liff) {
     liff.shareTargetPicker(data).then((res) => {
@@ -136,7 +165,7 @@ const openShareMenu = () => {
             <button class="button" @click="openShareMenu">
                 <ShareIcon/>
             </button>
-            <button class="button" @click="window.close()">
+            <button class="button" @click="window.close()" v-if="route.path.includes('mock')">
                 <CloseIcon/>
             </button>
         </div>

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch } from 'vue';
-import beforeImage from '@/assets/clothe.png';
-import afterImage from '@/assets/base-clothe.png';
 import BuyIcon from '@/assets/icons/buy-icon.svg';
 import {useGlobal} from "@/composables/global";
+import {CLOTHES_SRC_KEY, PRODUCT_URL_KEY, PRODUCT_PRICE_KEY, PRODUCT_TITLE_KEY} from "@/const"
 
 const containerRef = ref<HTMLElement | null>(null);
 const afterImageRef = ref<HTMLElement | null>(null);
@@ -49,6 +48,19 @@ watch(sliderPercent, (percent) => {
   }
 });
 
+const {resultSrc, profileSrc, clothingSrc} = useGlobal()
+const handleBuyNow = () => {
+  const productUrl = decodeURIComponent(localStorage.getItem(PRODUCT_URL_KEY));
+  if (productUrl) {
+    window.open(productUrl, '_blank');
+  } else{
+    alert("Product URL not found.");
+  }
+}
+
+const productTitle = ref(localStorage.getItem(PRODUCT_TITLE_KEY) || '');
+const productPrice = ref(localStorage.getItem(PRODUCT_PRICE_KEY) || '');
+
 onMounted(() => {
   window.addEventListener('mouseup', stopDragging);
   window.addEventListener('touchend', stopDragging);
@@ -61,6 +73,18 @@ onMounted(() => {
     afterImageRef.value.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
     sliderHandleRef.value.style.left = `${percent}%`;
   }
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('resultImg') && params.get('clothesImg') && params.get('title') && params.get('price') && params.get('url')) {
+    resultSrc.value = params.get('resultImg');
+    clothingSrc.value = params.get('clothesImg');
+    localStorage.setItem(CLOTHES_SRC_KEY, params.get('clothesImg'));
+    localStorage.setItem(PRODUCT_URL_KEY, params.get("url"));
+    localStorage.setItem(PRODUCT_PRICE_KEY, params.get("price"));
+    localStorage.setItem(PRODUCT_TITLE_KEY, params.get("title"));
+  }else {
+    console.log("Product URL not found.");
+  }
 });
 
 onUnmounted(() => {
@@ -69,8 +93,6 @@ onUnmounted(() => {
   window.removeEventListener('mousemove', onDrag);
   window.removeEventListener('touchmove', onDrag);
 });
-
-const {resultSrc, profileSrc, clothingSrc} = useGlobal()
 </script>
 
 <template>
@@ -97,19 +119,18 @@ const {resultSrc, profileSrc, clothingSrc} = useGlobal()
           <div class="center">
             <div class="item">
               <div class="img">
-                <img :src="clothingSrc" alt="" />
+                <img :src="clothingSrc" alt="Clothes" />
               </div>
               <div class="item-info">
-                <div class="name">Shirt</div>
-                <div class="info">wwwwww</div>
-                <div class="price">$2000</div>
+                <div class="name">{{productTitle}}</div>
+                <div class="price">{{productPrice}}</div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="action-btn">
+      <div class="action-btn" @click="handleBuyNow">
         <BuyIcon />
         <div class="buy-text-btn">BUY NOW</div>
       </div>
@@ -227,6 +248,7 @@ const {resultSrc, profileSrc, clothingSrc} = useGlobal()
     font-size: 14px;
     line-height: 13px;
     color: #ffffff;
+    margin-bottom: 5px;
   }
 
   .info {
