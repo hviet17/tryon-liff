@@ -35,3 +35,4 @@ export const FUN_TEXT_DB = [
 export const PRODUCT_TITLE_KEY = 'productTitle';
 export const PRODUCT_PRICE_KEY = 'productPrice';
 export const PRODUCT_URL_KEY = 'productUrl';
+export const BEFORE_IMAGE_KEY = 'beforeImageSrc';

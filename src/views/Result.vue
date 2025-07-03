@@ -2,7 +2,7 @@
 import { onMounted, onUnmounted, ref, watch } from 'vue';
 import BuyIcon from '@/assets/icons/buy-icon.svg';
 import {useGlobal} from "@/composables/global";
-import {CLOTHES_SRC_KEY, PRODUCT_URL_KEY, PRODUCT_PRICE_KEY, PRODUCT_TITLE_KEY} from "@/const"
+import {CLOTHES_SRC_KEY, PRODUCT_URL_KEY, PRODUCT_PRICE_KEY, PRODUCT_TITLE_KEY, BEFORE_IMAGE_KEY} from "@/const"
 
 const containerRef = ref<HTMLElement | null>(null);
 const afterImageRef = ref<HTMLElement | null>(null);
@@ -48,7 +48,8 @@ watch(sliderPercent, (percent) => {
   }
 });
 
-const {resultSrc, profileSrc, clothingSrc} = useGlobal()
+const {resultSrc, profileSrc, clothingSrc, beforeImageSrc} = useGlobal()
+
 const handleBuyNow = () => {
   const productUrl = decodeURIComponent(localStorage.getItem(PRODUCT_URL_KEY));
   if (productUrl) {
@@ -78,7 +79,9 @@ onMounted(() => {
   if (params.get('resultImg') && params.get('clothesImg') && params.get('title') && params.get('price') && params.get('url')) {
     resultSrc.value = params.get('resultImg');
     clothingSrc.value = params.get('clothesImg');
+    beforeImageSrc.value = params.get('beforeImg');
     localStorage.setItem(CLOTHES_SRC_KEY, params.get('clothesImg'));
+    localStorage.setItem(BEFORE_IMAGE_KEY, params.get('beforeImg'));
     localStorage.setItem(PRODUCT_URL_KEY, params.get("url"));
     localStorage.setItem(PRODUCT_PRICE_KEY, params.get("price"));
     localStorage.setItem(PRODUCT_TITLE_KEY, params.get("title"));
@@ -102,8 +105,8 @@ onUnmounted(() => {
       <div class="bottom-stick"></div>
       <div class="summary-container">
         <div class="img-result image-comparison-container" ref="containerRef">
-          <img :src="resultSrc" alt="After Image" class="comparison-image before-image" />
-          <img :src="profileSrc" alt="Before Image" class="comparison-image after-image" ref="afterImageRef" />
+          <img :src="profileSrc" alt="After Image" class="comparison-image before-image" />
+          <img :src="resultSrc" alt="Before Image" class="comparison-image after-image" ref="afterImageRef" />
           <div class="slider-handle" ref="sliderHandleRef"
                @mousedown="startDragging"
                @touchstart="startDragging"></div>

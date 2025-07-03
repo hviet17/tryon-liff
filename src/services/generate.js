@@ -20,7 +20,7 @@ export const generateImage = async (personFile, productFile) => {
             }
         );
         console.log('Server response:', response.data);
-        return response.data.imageUrl;
+        return response.data;
     } catch (error) {
         if (error.response) {
             console.error('Server responded with error status:', error.response.status);
