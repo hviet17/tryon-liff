@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, ref} from 'vue';
-import beforeImage from '@/assets/base-clothe.png';
-import afterImage from '@/assets/main-pic.png'; // Make sure you have this image
 import BuyIcon from '@/assets/icons/buy-icon.svg'
 
+
 const containerRef = ref<HTMLElement | null>(null);
-const afterImageRef = ref<HTMLElement | null>(null);
+const afterImageRef = ref<HTMLElement | null>('https://cdn.fashn.ai/bd4f424c-7024-4aee-bd3d-838870212416/output_0.png');
 const sliderHandleRef = ref<HTMLElement | null>(null);
 
 let isDragging = false;
@@ -84,8 +83,8 @@ onUnmounted(() => {
             <div class="bottom-stick"></div>
             <div class="summary-container">
                 <div class="img-result image-comparison-container" ref="containerRef">
-                    <img :src="beforeImage" alt="Before Image" class="comparison-image before-image">
-                    <img :src="afterImage" alt="After Image" class="comparison-image after-image" ref="afterImageRef">
+                    <img src="https://obs-beta.line-apps.com/0hTPppfWZKC39NCRV-G710KBxZAA5-ZBx8LXEWQmkJBzk9ZTNPeTQsGj1MKyk6Ozd2DWcURhgKLhAAMR5hGm8lfB9XBRM9ZycrFiovbx9UPgQQZRxMcG4" alt="Before Image" class="comparison-image before-image">
+                    <img src="https://cdn.fashn.ai/bd4f424c-7024-4aee-bd3d-838870212416/output_0.png" alt="After Image" class="comparison-image after-image" ref="afterImageRef">
                     <div class="slider-handle" ref="sliderHandleRef"
                          @mousedown="startDragging"
                          @touchstart="startDragging">
@@ -102,7 +101,7 @@ onUnmounted(() => {
                     <div class="center">
                         <div class="item">
                             <div class="img">
-                                <img :src="beforeImage" alt="">
+                                <img src="https://c.imgz.jp/476/94462476/94462476b_1_d_500.jpg" alt="">
                             </div>
                             <div class="item-info">
                                 <div class="name">SHIRT</div>
