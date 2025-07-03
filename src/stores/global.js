@@ -9,7 +9,7 @@ export const useGlobalStore = defineStore('global', () => {
     const productTitle = ref("")
     const productPrice = ref("")
     const beforeImageSrc = ref("")
-
+    const profileSrcFull = ref("")
     return {
         profileSrc,
         clothingSrc,
@@ -17,6 +17,7 @@ export const useGlobalStore = defineStore('global', () => {
         productUrl,
         productTitle,
         productPrice,
-        beforeImageSrc
+        beforeImageSrc,
+        profileSrcFull
     }
 })

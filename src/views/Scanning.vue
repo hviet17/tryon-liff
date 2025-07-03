@@ -1,5 +1,5 @@
 <template>
-  <div class="scan-container" :style="{ backgroundImage: `url(${profileSrc})` }">
+  <div class="scan-container" :style="{ backgroundImage: `url(${profileSrcFull})` }">
     <div class="scanner" @animationiteration="handleScan"></div>
   </div>
 </template>
@@ -13,7 +13,7 @@ import {onMounted} from "vue";
 import {generateImage} from "@/services/generate.js";
 
 // How many scans to perform
-const {clothingSrc, profileSrc, resultSrc, beforeImageSrc} = useGlobal()
+const {clothingSrc, profileSrc, resultSrc, beforeImageSrc, profileSrcFull} = useGlobal()
 const totalScans = ref(2)
 const currentScan = ref(0)
 const router = useRouter()

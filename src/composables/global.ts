@@ -3,7 +3,7 @@ import { useGlobalStore } from '@/stores/global'
 
 export const useGlobal = () => {
     const store = useGlobalStore()
-    const { profileSrc, clothingSrc, resultSrc, productUrl, productTitle, productPrice, beforeImageSrc } = storeToRefs(store)
+    const { profileSrc, clothingSrc, resultSrc, productUrl, productTitle, productPrice, beforeImageSrc, profileSrcFull } = storeToRefs(store)
 
     return {
         profileSrc,
@@ -12,6 +12,7 @@ export const useGlobal = () => {
         productUrl,
         productTitle,
         productPrice,
-        beforeImageSrc
+        beforeImageSrc,
+        profileSrcFull
     }
 }

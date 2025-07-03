@@ -35,17 +35,17 @@ const badImages = [
     badImage5
 ]
 const router = useRouter()
-const {profileSrc, clothingSrc, productUrl, productTitle, productPrice} = useGlobal()
+const {profileSrc, clothingSrc, productUrl, productTitle, productPrice, profileSrcFull} = useGlobal()
 
 const onProfileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-        profileSrc.value = file;
         const reader = new FileReader();
         reader.onload = function (event) {
-            const base64 = event.target.result.split(',')[1];
-            profileSrc.value = base64;
-            router.push({name: 'scanning'}); // Navigate to the next step
+          profileSrcFull.value = event.target.result;
+          const base64 = event.target.result.split(',')[1];
+          profileSrc.value = base64;
+          router.push({name: 'scanning'}); // Navigate to the next step
         }
         reader.readAsDataURL(file);
     }
