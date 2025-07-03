@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import imgSrc from '@/assets/eugene.png';
+const imgSrc = 'https://obs-beta.line-apps.com/0hTPppfWZKC39NCRV-G710KBxZAA5-ZBx8LXEWQmkJBzk9ZTNPeTQsGj1MKyk6Ozd2DWcURhgKLhAAMR5hGm8lfB9XBRM9ZycrFiovbx9UPgQQZRxMcG4'
 import {ref} from 'vue';
 import {useRouter} from "vue-router";
 import {isLoading} from "@/stores/globalLoading.js";
