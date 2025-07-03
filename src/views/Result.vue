@@ -48,7 +48,7 @@ watch(sliderPercent, (percent) => {
   }
 });
 
-const {resultSrc, profileSrc, clothingSrc, beforeImageSrc} = useGlobal()
+const {resultSrc, profileSrcFull, clothingSrc, beforeImageSrc} = useGlobal()
 
 const handleBuyNow = () => {
   const productUrl = decodeURIComponent(localStorage.getItem(PRODUCT_URL_KEY));
@@ -105,7 +105,7 @@ onUnmounted(() => {
       <div class="bottom-stick"></div>
       <div class="summary-container">
         <div class="img-result image-comparison-container" ref="containerRef">
-          <img :src="profileSrc || beforeImageSrc" alt="After Image" class="comparison-image before-image" />
+          <img :src="profileSrcFull || beforeImageSrc" alt="After Image" class="comparison-image before-image" />
           <img :src="resultSrc" alt="Before Image" class="comparison-image after-image" ref="afterImageRef" />
           <div class="slider-handle" ref="sliderHandleRef"
                @mousedown="startDragging"
