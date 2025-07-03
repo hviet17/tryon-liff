@@ -130,16 +130,18 @@ onUnmounted(() => {
 .summary-container {
     width: 90%;
     margin: 0 auto;
+
 }
 
 .summary {
     display: flex;
     flex-direction: column;
-    height: 184px;
+    height: 100%;
     width: 100%;
     //padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
+
 }
 
 .item {
@@ -227,6 +229,7 @@ onUnmounted(() => {
     justify-content: center;
     align-items: center;
     gap: 5px;
+    margin-top: 20px;
 }
 
 

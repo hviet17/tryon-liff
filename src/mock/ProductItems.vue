@@ -791,7 +791,6 @@ const handleItemSelect = () => {
     /* Add any necessary styles for the main frame here */
     width: 95%;
     margin: 0 auto;
-    margin-top: 20px;
 }
 
 .style_SalendipityModule___ZcsO {
