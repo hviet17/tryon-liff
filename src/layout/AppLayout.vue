@@ -17,6 +17,7 @@ watch(route, () => {
 })
 </script>
 <template>
+
     <div class="app-layout">
         <div class="app-header" :class="{'white-text':route.meta.whiteTxt}">
             <div :class="{title:true }">ZoZo Town
@@ -24,7 +25,7 @@ watch(route, () => {
             <button class="button" @click="openShareMenu">
                 <ShareIcon/>
             </button>
-            <button class="button">
+            <button class="button" @click="window.close()">
                 <CloseIcon/>
             </button>
         </div>
@@ -32,6 +33,7 @@ watch(route, () => {
             <slot></slot>
             <ShareMenu ref="shareMenuRef"/>
         </div>
+
     </div>
 </template>
 

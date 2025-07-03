@@ -2,13 +2,13 @@ import {createRouter, createWebHistory} from 'vue-router'
 import WelcomeView from "@/views/WelcomeView.vue";
 import Guide from "@/components/Guide/Guide.vue";
 import Result from "@/components/result/Result.vue";
-import TryOn from "@/views/TryOn.vue";
 import ProductPage from "@/mock/ProductPage.vue";
 import CameraScan from "@/mock/CameraScan.vue";
 import Home from "@/views/Home.vue";
 import RealGuide from "@/views/Guide.vue";
 import Scanning from "@/views/Scanning.vue";
 import MainView from "@/mock/MainView.vue";
+import Processing from "@/views/Processing.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,9 +37,12 @@ const router = createRouter({
             }
         },
         {
-            path: '/try-on',
-            name: 'try-on',
-            component: TryOn,
+            path: '/processing',
+            name: 'processing',
+            component: Processing,
+            meta: {
+                fullScreen: true
+            }
         },
         {
             path: '/mock/main',

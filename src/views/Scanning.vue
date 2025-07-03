@@ -5,28 +5,26 @@
 </template>
 
 <script setup>
-import imgSrc from '@/assets/clothe.png';
 import { ref } from 'vue';
 import {useGlobal} from "@/composables/global.js";
+import {useRouter} from "vue-router";
 // How many scans to perform
 const {profileSrc} = useGlobal()
 const totalScans = ref(2)
 const currentScan = ref(0)
+const router = useRouter()
 
 const handleScan = () => {
   currentScan.value++
 
   if (currentScan.value >= totalScans.value) {
-    console.log('Scanning finished ✅')
+     router.push({name: 'processing'})
   }
 }
 </script>
 
 <style scoped lang="scss">
 .scan-container {
-  position: relative;
-  height: 100dvh;
-  width: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
