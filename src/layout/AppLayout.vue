@@ -111,7 +111,7 @@ const share = () => {
           "action": {
             "type": "uri",
             "label": "Go to Ai Fit",
-            "uri": `https://tryon-liff.pages.dev/result?beforeImg=${encodeURIComponent(beforeImageSrc.value)}&afterImg=${encodeURIComponent(resultSrc.value)}&clothesImg=${encodeURIComponent(clothesSrc)}&title=${productTitle}&price=${productPrice}&url=${encodeURIComponent(productUrl)}`,
+            "uri": `https://tryon-liff.pages.dev/result?beforeImg=${encodeURIComponent(beforeImageSrc.value)}&resultImg=${encodeURIComponent(resultSrc.value)}&clothesImg=${encodeURIComponent(clothesSrc)}&title=${productTitle}&price=${productPrice}&url=${encodeURIComponent(productUrl)}`,
           },
           "color": "#ffffff"
         },
@@ -126,7 +126,7 @@ const share = () => {
       "backgroundColor": "#000000"
     }
   }
-  console.log(contents);
+
   // return;
   const data = [{
     type: "flex",
