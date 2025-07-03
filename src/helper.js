@@ -21,7 +21,11 @@ export async function imageUrlToBase64(url) {
     const reader = new FileReader();
 
     return await new Promise((resolve, reject) => {
-        reader.onloadend = () => resolve(reader.result);
+        reader.onloadend = () => {
+            const result = reader.result;
+            const base64 = result.split(',')[1]; // remove "data:image/...;base64,"
+            resolve(base64);
+        };
         reader.onerror = reject;
         reader.readAsDataURL(blob);
     });
