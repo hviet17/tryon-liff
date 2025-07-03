@@ -168,7 +168,7 @@ onUnmounted(() => {
 }
 
 .img-result {
-  height: 360px;
+  height: 294px;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
@@ -183,6 +183,7 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   border-radius: 20px;
 }
 
