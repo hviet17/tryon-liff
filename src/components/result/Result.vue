@@ -2,6 +2,7 @@
 import {onMounted, onUnmounted, ref} from 'vue';
 import beforeImage from '@/assets/clothe.png';
 import afterImage from '@/assets/base-clothe.png'; // Make sure you have this image
+import BuyIcon from '@/assets/icons/buy-icon.svg'
 
 const containerRef = ref<HTMLElement | null>(null);
 const afterImageRef = ref<HTMLElement | null>(null);
@@ -77,37 +78,44 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="result-container">
-        <div class="result-title">
-            <span>Hello!</span>
-            <br>
-            <span style="margin-top: 5px; display: inline-block;">
+    <div class="result-wrapper">
+        <div class="result-container">
+            <div class="summary-container">
+                <div class="img-result image-comparison-container" ref="containerRef">
+                    <img :src="beforeImage" alt="Before Image" class="comparison-image before-image">
+                    <img :src="afterImage" alt="After Image" class="comparison-image after-image" ref="afterImageRef">
+                    <div class="slider-handle" ref="sliderHandleRef"
+                         @mousedown="startDragging"
+                         @touchstart="startDragging">
+                    </div>
+                </div>
+                <div class="result-title">
+                    <span>Hello!</span>
+                    <br>
+                    <span style="margin-top: 5px; display: inline-block;">
                 Gorgeous looks!
             </span>
-        </div>
-        <div class="summary-container">
-            <div class="img-result image-comparison-container" ref="containerRef">
-                <img :src="beforeImage" alt="Before Image" class="comparison-image before-image">
-                <img :src="afterImage" alt="After Image" class="comparison-image after-image" ref="afterImageRef">
-                <div class="slider-handle" ref="sliderHandleRef"
-                     @mousedown="startDragging"
-                     @touchstart="startDragging">
                 </div>
-            </div>
-            <div class="summary">
-                <div class="center">
-                    <div class="item">
-                        <div class="img">
-                            <img :src="beforeImage" alt="">
-                        </div>
-                        <div class="item-info">
-                            <div class="name">Shirt</div>
-                            <div class="info">wwwwww</div>
-                            <div class="price">$2000</div>
+                <div class="summary">
+                    <div class="center">
+                        <div class="item">
+                            <div class="img">
+                                <img :src="beforeImage" alt="">
+                            </div>
+                            <div class="item-info">
+                                <div class="name">Shirt</div>
+                                <div class="info">wwwwww</div>
+                                <div class="price">$2000</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="action-btn">
+                <BuyIcon/>
+                <div class="buy-text-btn">BUY NOW</div>
+            </div>
+
         </div>
     </div>
 </template>
@@ -140,8 +148,8 @@ onUnmounted(() => {
     gap: 10px;
 
     .img {
-        width: 60px;
-        height: 60px;
+        width: 64px;
+        height: 64px;
         overflow: hidden;
 
         img {
@@ -208,12 +216,28 @@ onUnmounted(() => {
 }
 
 .action-btn {
-    background-color: #3B3B3B;
+    background-color: #171717;
     color: #FFFFFF;
     border: none;
     border-radius: 8px;
     height: 48px;
     font-weight: 700;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.buy-text-btn {
+    // BUY NOW
+    color: #E9E9EB;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 17px;
+    word-wrap: break-word
 }
 
 .result-container {
@@ -223,12 +247,22 @@ onUnmounted(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0 auto;
-    height: 644px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #4D4D4D;
     border-radius: 30px;
+    padding: 25px 0px;
+    background: linear-gradient(157deg,
+        #2D2D2D 0%,
+        #939393 60%,
+        #030303 100%);
+}
+
+.result-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #1E1E1E;
 }
 
 .result-title {
@@ -238,7 +272,7 @@ onUnmounted(() => {
     line-height: 100%;
     letter-spacing: -0.4px;
     color: #FFFFFF;
-    padding: 30px;
+    margin-top: 30px;
 }
 
 /* Add these styles to your existing <style scoped lang="scss"> block */
