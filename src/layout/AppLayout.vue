@@ -127,7 +127,7 @@ const share = () => {
   }
   const data = [{
     type: "flex",
-    altText: "This is a Flex Message",
+    altText: "Check out this amazing outfit!",
     contents
   }]
   if (liff) {
