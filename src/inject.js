@@ -86,7 +86,7 @@ if (swiperContainer) {
         const left = window.screenX + (window.outerWidth - popupWidth) / 2;
         const top = window.screenY + (window.outerHeight - popupHeight) / 2;
         window.open(
-            `${liffUrl}/guide?clothesImg=${encodedImgSrc}&title=${productName}&price=${productPrice}&url=${encodeURIComponent(window.location.href)}`,
+            `${liffUrl}/guide?clothesImg=${encodedImgSrc}&title=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&url=${encodeURIComponent(window.location.href)}`,
             'popupWindow',
             `width=${popupWidth},height=${popupHeight},left=${left},top=${top},menubar=no,toolbar=no,status=no,resizable=no,scrollbars=no`
         );
