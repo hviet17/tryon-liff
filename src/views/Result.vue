@@ -59,8 +59,8 @@ const handleBuyNow = () => {
   }
 }
 
-const productTitle = ref(localStorage.getItem(PRODUCT_TITLE_KEY) || '');
-const productPrice = ref(localStorage.getItem(PRODUCT_PRICE_KEY) || '');
+const productTitle = ref(decodeURI(localStorage.getItem(PRODUCT_TITLE_KEY)) || '');
+const productPrice = ref(decodeURI(localStorage.getItem(PRODUCT_PRICE_KEY)) || '');
 
 onMounted(() => {
   window.addEventListener('mouseup', stopDragging);
@@ -194,9 +194,9 @@ onUnmounted(() => {
   position: absolute;
   top: 0;
   left: 0%;
-  width: 4px;
+  width: 10px;
+  border-left: 4px solid white;
   height: 100%;
-  background-color: white;
   cursor: ew-resize;
   transform: translateX(-50%);
   z-index: 10;
