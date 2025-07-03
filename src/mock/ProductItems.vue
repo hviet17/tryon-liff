@@ -59,7 +59,7 @@ const handleItemSelect = () => {
                                                 <div class="item">
                                                     <div class="item-link" href="#" target="_blank" rel="noopener noreferrer" @click="handleItemSelect">
                                                         <div class="item-image-wrapper">
-                                                            <img width="1" height="1" class="item-image" src="https://item-shopping.c.yimg.jp/i/j/zozo_95369512" alt="ブラウス シャツ ひんやりテンセルオーバーシャツ レディース" loading="lazy">
+                                                            <img width="1" height="1" class="item-image" src="https://c.imgz.jp/476/94462476/94462476b_1_d_500.jpg" alt="ブラウス シャツ ひんやりテンセルオーバーシャツ レディース" loading="lazy">
                                                             <div class="item-image-overlay"></div>
                                                             <div class="item-image-banner"></div>
                                                         </div>
@@ -1015,8 +1015,8 @@ const handleItemSelect = () => {
 }
 
 .item-link .item-image {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 150px;
 }
 
 .item-link .item-image-overlay {

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, ref} from 'vue';
-import beforeImage from '@/assets/base-clothe.png';
-import afterImage from '@/assets/main-pic.png'; // Make sure you have this image
+import beforeImage from '@/assets/src-pic.jpg';
+import afterImage from '@/assets/eugene.png'; // Make sure you have this image
 import BuyIcon from '@/assets/icons/buy-icon.svg'
+
 
 const containerRef = ref<HTMLElement | null>(null);
 const afterImageRef = ref<HTMLElement | null>(null);

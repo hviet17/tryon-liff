@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import imgSrc from '@/assets/main-pic.png';
+import imgSrc from '@/assets/eugene.png';
 import {ref} from 'vue';
 import {useRouter} from "vue-router";
 import {isLoading} from "@/stores/globalLoading.js";

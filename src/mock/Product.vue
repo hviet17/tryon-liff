@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import LoadingIcon from '@/assets/icons/buy-icon.svg'
 import {useRouter} from 'vue-router'
-import mainPic from '@/assets/main-pic.png'
+import mainPic from '@/assets/src-pic.jpg'
 
 const router = useRouter()
 const handleAIFit = () => {
