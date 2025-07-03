@@ -43,7 +43,8 @@ const onProfileChange = (e) => {
         profileSrc.value = file;
         const reader = new FileReader();
         reader.onload = function (event) {
-            profileSrc.value = event.target.result; // base64 encoded image
+            const base64 = event.target.result.split(',')[1];
+            profileSrc.value = base64;
             router.push({name: 'scanning'}); // Navigate to the next step
         }
         reader.readAsDataURL(file);
