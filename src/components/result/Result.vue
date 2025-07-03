@@ -80,6 +80,8 @@ onUnmounted(() => {
 <template>
     <div class="result-wrapper">
         <div class="result-container">
+            <div class="top-stick"></div>
+            <div class="bottom-stick"></div>
             <div class="summary-container">
                 <div class="img-result image-comparison-container" ref="containerRef">
                     <img :src="beforeImage" alt="Before Image" class="comparison-image before-image">
@@ -120,6 +122,32 @@ onUnmounted(() => {
     </div>
 </template>
 <style scoped lang="scss">
+.bottom-stick {
+    width: 1000px;
+    height: 5px;
+    transform: rotate(-19deg) translate(-200px, 320px);
+    transform-origin: left top;
+    background: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4);
+    filter: blur(1px);
+    border-radius: 5px;
+}
+
+.top-stick {
+    width: 1000px;
+    height: 2px;
+    transform: rotate(15deg) translate(-100px, 200px);
+    transform-origin: top left;
+    background: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4);
+    filter: blur(1px);
+    border-radius: 5px;
+}
+
 .img-result {
     height: 350px;
     overflow: hidden;
