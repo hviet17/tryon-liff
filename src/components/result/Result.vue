@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, ref} from 'vue';
-import beforeImage from '@/assets/main-pic.png';
-import afterImage from '@/assets/base-clothe.png'; // Make sure you have this image
+import beforeImage from '@/assets/base-clothe.png';
+import afterImage from '@/assets/main-pic.png'; // Make sure you have this image
 import BuyIcon from '@/assets/icons/buy-icon.svg'
 
 const containerRef = ref<HTMLElement | null>(null);
@@ -64,8 +64,8 @@ onMounted(() => {
     // Initial positioning of the slider and clip-path for consistency
     // This sets the slider to the far left and after image completely hidden
     if (afterImageRef.value && sliderHandleRef.value) {
-        afterImageRef.value.style.clipPath = `inset(0 100% 0 0)`;
-        sliderHandleRef.value.style.left = `0%`;
+        afterImageRef.value.style.clipPath = `inset(10% 90% 0 0)`;
+        sliderHandleRef.value.style.left = `10%`;
     }
 });
 
@@ -103,9 +103,9 @@ onUnmounted(() => {
                                 <img :src="beforeImage" alt="">
                             </div>
                             <div class="item-info">
-                                <div class="name">Shirt</div>
+                                <div class="name">SHIRT</div>
                                 <div class="info">wwwwww</div>
-                                <div class="price">$2000</div>
+                                <div class="price">￥2000</div>
                             </div>
                         </div>
                     </div>
@@ -160,21 +160,20 @@ onUnmounted(() => {
     }
 
     .name {
+        font-size: 14px;
         font-family: Roboto, sans-serif;
         font-weight: 600;
-        font-size: 12px;
-        line-height: 13px;
-        letter-spacing: 0px;
+        line-height: 9.48px;
+        word-wrap: break-word;
         color: #FFFFFF;
     }
 
     .info {
+        color: #B2B2B2;
+        font-size: 13px;
         font-family: Roboto, sans-serif;
         font-weight: 400;
-        font-size: 13px;
-        line-height: 20px;
-        letter-spacing: 0px;
-        color: #B2B2B2;
+        word-wrap: break-word
     }
 }
 
