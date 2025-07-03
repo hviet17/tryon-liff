@@ -8,7 +8,7 @@
 import { ref } from 'vue';
 import {useRouter} from "vue-router";
 import {useGlobal} from "@/composables/global";
-import {urlToBlob, dataURLToBlob} from "@/helper.js";
+import {imageUrlToBase64} from "@/helper.js";
 import {onMounted} from "vue";
 import {generateImage} from "@/services/generate.js";
 
@@ -29,8 +29,8 @@ const handleScan = () => {
 onMounted(async () => {
   if (!clothingSrc.value || !profileSrc.value) return;
 
-  const clothingBlob = await urlToBlob(clothingSrc.value);
-  const profileBlob = await dataURLToBlob(profileSrc.value);
+  const clothingBlob = await imageUrlToBase64(clothingSrc.value);
+  const profileBlob = profileSrc.value
 
   if (profileSrc.value) {
     try {

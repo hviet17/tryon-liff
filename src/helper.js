@@ -15,6 +15,18 @@ export const urlToBlob = async (url) => {
     return response.blob();
 }
 
+export async function imageUrlToBase64(url) {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const reader = new FileReader();
+
+    return await new Promise((resolve, reject) => {
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+    });
+}
+
 export const dataURLToBlob = (dataUrl) => {
     const arr = dataUrl.split(',');
     const mime = arr[0].match(/:(.*?);/)[1];
