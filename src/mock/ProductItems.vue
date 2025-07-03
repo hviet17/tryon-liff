@@ -209,7 +209,7 @@ const handleItemSelect = () => {
                                                 <div class="item">
                                                     <a class="item-link" href="#" target="_blank" rel="noopener noreferrer">
                                                         <div class="item-image-wrapper">
-                                                            <img width="1" height="1" class="item-image" src="https://item-shopping.c.yimg.jp/i/j/zozo_95404148" alt="tシャツ シアーレース半袖メロウトップス レディース" loading="lazy">
+                                                            <img width="1" height="1" class="item-image" src="https://c.imgz.jp/112/92633112/92633112b_34_d_500.jpg" alt="tシャツ シアーレース半袖メロウトップス レディース" loading="lazy">
                                                             <div class="item-image-overlay"></div>
                                                             <div class="item-image-banner"></div>
                                                         </div>
