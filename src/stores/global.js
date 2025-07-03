@@ -4,9 +4,17 @@ import { defineStore } from 'pinia'
 export const useGlobalStore = defineStore('global', () => {
     const profileSrc = ref("")
     const clothingSrc = ref("")
+    const resultSrc = ref("")
+    const productUrl = ref("")
+    const productTitle = ref("")
+    const productPrice = ref("")
 
     return {
         profileSrc,
-        clothingSrc
+        clothingSrc,
+        resultSrc,
+        productUrl,
+        productTitle,
+        productPrice
     }
 })

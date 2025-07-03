@@ -3,10 +3,14 @@ import { useGlobalStore } from '@/stores/global'
 
 export const useGlobal = () => {
     const store = useGlobalStore()
-    const { profileSrc, clothingSrc } = storeToRefs(store)
+    const { profileSrc, clothingSrc, resultSrc, productUrl, productTitle, productPrice } = storeToRefs(store)
 
     return {
         profileSrc,
-        clothingSrc
+        clothingSrc,
+        resultSrc,
+        productUrl,
+        productTitle,
+        productPrice
     }
 }

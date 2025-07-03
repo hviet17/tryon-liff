@@ -32,3 +32,6 @@ export const FUN_TEXT_DB = [
     "🛠️ Patching in some trend updates...",
     "🎬 Lights, camera, fashion—almost ready!"
 ];
+export const PRODUCT_TITLE_KEY = 'productTitle';
+export const PRODUCT_PRICE_KEY = 'productPrice';
+export const PRODUCT_URL_KEY = 'productUrl';

@@ -11,7 +11,7 @@ import badImage5 from '@/assets/images/bad/149eca8da00d4fb585a97d72f4e0e04af017b
 import {useRouter} from "vue-router";
 import {useGlobal} from "@/composables/global";
 import {onMounted} from "vue";
-import {CLOTHES_SRC_KEY} from "@/const"
+import {CLOTHES_SRC_KEY, PRODUCT_URL_KEY, PRODUCT_PRICE_KEY, PRODUCT_TITLE_KEY} from "@/const"
 import {isValidUrl} from "@/helper.js";
 import aiGuide1 from '@/assets/ai-guide1.png'
 import aiGuide2 from '@/assets/ai-guide2.png'
@@ -35,7 +35,7 @@ const badImages = [
     badImage5
 ]
 const router = useRouter()
-const {profileSrc, clothingSrc} = useGlobal()
+const {profileSrc, clothingSrc, productUrl, productTitle, productPrice} = useGlobal()
 
 const onProfileChange = (e) => {
     const file = e.target.files[0];
@@ -55,12 +55,14 @@ const handleNext = () => {
 }
 
 onMounted(() => {
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-    const encodedUrl = params.get("url") || localStorage.getItem(CLOTHES_SRC_KEY);
+  const params = new URLSearchParams(window.location.search);
+  const imageUrl = params.get("clothesImg") || localStorage.getItem(CLOTHES_SRC_KEY);
+  productTitle.value = params.get("title") || localStorage.getItem(PRODUCT_TITLE_KEY);
+  productPrice.value = params.get("price") || localStorage.getItem(PRODUCT_PRICE_KEY);
+  productUrl.value = params.get("url") || localStorage.getItem(PRODUCT_URL_KEY);
 
-    if (encodedUrl && isValidUrl(encodedUrl)) {
-        clothingSrc.value = encodedUrl;
+    if (imageUrl && isValidUrl(imageUrl)) {
+        clothingSrc.value = imageUrl;
         localStorage.setItem(CLOTHES_SRC_KEY, "");
     }
 })
