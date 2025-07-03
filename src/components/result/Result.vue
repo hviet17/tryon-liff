@@ -149,7 +149,7 @@ onUnmounted(() => {
 }
 
 .img-result {
-    height: 350px;
+    height: 294px;
     overflow: hidden;
     margin: 0 auto;
 
@@ -323,6 +323,7 @@ onUnmounted(() => {
     left: 0;
     width: 100%;
     height: 100%;
+    object-position: top;
     object-fit: cover;
     border-radius: 20px; /* Apply the border-radius from img-result img */
 }
