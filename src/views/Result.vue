@@ -60,7 +60,7 @@ const handleBuyNow = () => {
 }
 
 const productTitle = ref(decodeURI(localStorage.getItem(PRODUCT_TITLE_KEY)) || '');
-const productPrice = ref(localStorage.getItem(PRODUCT_PRICE_KEY) || '');
+const productPrice = ref(localStorage.getItem(PRODUCT_PRICE_KEY) ? decodeURI(localStorage.getItem(PRODUCT_PRICE_KEY) || '') : '');
 
 onMounted(() => {
   window.addEventListener('mouseup', stopDragging);
@@ -126,7 +126,7 @@ onUnmounted(() => {
               </div>
               <div class="item-info">
                 <div class="name">{{productTitle}}</div>
-                <div class="price">{{productPrice}}</div>
+                <div class="price" v-if="productPrice">¥{{productPrice}}</div>
               </div>
             </div>
           </div>
