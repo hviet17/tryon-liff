@@ -10,6 +10,7 @@ import Scanning from "@/views/Scanning.vue";
 import MainView from "@/mock/MainView.vue";
 import Processing from "@/views/Processing.vue";
 import RealResult from "@/views/Result.vue";
+import Demo from "@/views/Demo.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -56,6 +57,11 @@ const router = createRouter({
             meta: {
                 whiteTxt: true
             }
+        },
+        {
+            path: '/demo',
+            name: 'real-demo',
+            component: Demo,
         },
         {
             path: '/mock/main',
