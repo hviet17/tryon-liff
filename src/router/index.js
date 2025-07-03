@@ -57,6 +57,9 @@ const router = createRouter({
             path: '/mock/result',
             name: 'result',
             component: Result,
+            meta: {
+                whiteTxt: true
+            }
         },
         {
             path: '/mock/camera',
