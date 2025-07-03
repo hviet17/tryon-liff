@@ -8,7 +8,7 @@
           </svg>
           <span class="styles_names__fBkDG">
             <span class="styles_storeName__Xxi8I LineClamp" style="-webkit-line-clamp: 1;">
-              <font style="vertical-align: inherit;"> ZOZOTOWN Yahoo!店 </font>
+              <font style="vertical-align: inherit;"> ZOZOTOWN  </font>
             </span>
             <span class="styles_shopName__LVktV LineClamp" style="-webkit-line-clamp: 1;">
               <font style="vertical-align: inherit;"> Whim Gazette </font>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, ref} from 'vue';
-import beforeImage from '@/assets/clothe.png';
+import beforeImage from '@/assets/main-pic.png';
 import afterImage from '@/assets/base-clothe.png'; // Make sure you have this image
 import BuyIcon from '@/assets/icons/buy-icon.svg'
 

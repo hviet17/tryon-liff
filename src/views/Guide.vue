@@ -2,13 +2,9 @@
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import GreenTickIcon from '@/assets/icons/green-tick-icon.svg'
 import RedTickIcon from '@/assets/icons/red-tick-icon.svg'
-import goodImage1 from '@/assets/images/good/image.png'
-import goodImage2 from '@/assets/images/good/image (1).png'
 import goodImage3 from '@/assets/images/good/466ee505aede5e2e2358f0f99ba181485916013c.png'
 import goodImage4 from '@/assets/images/good/a4f406f98fd57ebcec6348db6e1b2acce0d84eb1.png'
 import goodImage5 from '@/assets/images/good/f0497f86b4a95811ebe2cf18ef4c5ccb3372643a.png'
-import badImage1 from '@/assets/images/bad/Mask Copy 4.png'
-import badImage2 from '@/assets/images/bad/image (3).png'
 import badImage3 from '@/assets/images/bad/2fcb2971e82fe9f81824ec99d697b176986eb9e5.png'
 import badImage4 from '@/assets/images/bad/870b3bc6dc0fc18bd8a7732f1c37faa035a944c0.png'
 import badImage5 from '@/assets/images/bad/149eca8da00d4fb585a97d72f4e0e04af017be75.png'
@@ -17,18 +13,23 @@ import {useGlobal} from "@/composables/global";
 import {onMounted} from "vue";
 import {CLOTHES_SRC_KEY} from "@/const"
 import {isValidUrl} from "@/helper.js";
+import aiGuide1 from '@/assets/ai-guide1.png'
+import aiGuide2 from '@/assets/ai-guide2.png'
+import aiGuide3 from '@/assets/ai-guide3.png'
+import aiGuide4 from '@/assets/ai-guide4.png'
+
 
 const goodImages = [
-    goodImage1,
-    goodImage2,
+    aiGuide1,
+    aiGuide2,
     goodImage3,
     goodImage4,
     goodImage5
 ]
 
 const badImages = [
-    badImage1,
-    badImage2,
+    aiGuide3,
+    aiGuide4,
     badImage3,
     badImage4,
     badImage5
@@ -54,14 +55,14 @@ const handleNext = () => {
 }
 
 onMounted(() => {
-  const hash = window.location.hash.substring(1);
-  const params = new URLSearchParams(hash);
-  const encodedUrl = params.get("url") || localStorage.getItem(CLOTHES_SRC_KEY);
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const encodedUrl = params.get("url") || localStorage.getItem(CLOTHES_SRC_KEY);
 
-  if (encodedUrl && isValidUrl(encodedUrl)) {
-    clothingSrc.value = encodedUrl;
-    localStorage.setItem(CLOTHES_SRC_KEY, "");
-  }
+    if (encodedUrl && isValidUrl(encodedUrl)) {
+        clothingSrc.value = encodedUrl;
+        localStorage.setItem(CLOTHES_SRC_KEY, "");
+    }
 })
 </script>
 
