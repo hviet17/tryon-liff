@@ -9,7 +9,7 @@ import {CLOTHES_SRC_KEY, PRODUCT_URL_KEY, PRODUCT_PRICE_KEY, PRODUCT_TITLE_KEY} 
 
 const route = useRoute()
 const shareMenuRef = ref(null); // Create a ref to access the ShareMenu component instance
-const {resultSrc, beforeImageSrc} = useGlobal()
+const {resultSrc, beforeImageSrc, clothingSrc} = useGlobal()
 
 const share = () => {
   if (!resultSrc.value) {
@@ -17,11 +17,10 @@ const share = () => {
     return;
   }
 
-  const clothesSrc = decodeURIComponent(localStorage.getItem(CLOTHES_SRC_KEY)) || '';
+  const clothesSrc = decodeURIComponent(localStorage.getItem(CLOTHES_SRC_KEY)) || clothingSrc.value || '';
   const productUrl = decodeURIComponent(localStorage.getItem(PRODUCT_URL_KEY)) || '';
   const productTitle = localStorage.getItem(PRODUCT_TITLE_KEY) || '';
   const productPrice = decodeURIComponent(localStorage.getItem(PRODUCT_PRICE_KEY)) || '';
-
   const contents = {
     "type": "bubble",
     "hero": {
@@ -32,7 +31,7 @@ const share = () => {
       "aspectMode": "cover",
       "action": {
         "type": "uri",
-        "uri": resultSrc.value
+        "uri": resultSrc.value,
       },
       "align": "start"
     },
@@ -111,7 +110,7 @@ const share = () => {
           "action": {
             "type": "uri",
             "label": "Go to Ai Fit",
-            "uri": `https://tryon-liff.pages.dev/result?beforeImg=${encodeURIComponent(beforeImageSrc.value)}&resultImg=${encodeURIComponent(resultSrc.value)}&clothesImg=${encodeURIComponent(clothesSrc)}&title=${productTitle}&price=${productPrice}&url=${encodeURIComponent(productUrl)}`,
+            "uri": `https://tryon-liff.pages.dev/result?beforeImg=${encodeURIComponent(beforeImageSrc.value)}&resultImg=${encodeURIComponent(resultSrc.value)}&clothesImg=${encodeURIComponent(clothesSrc)}&title=${encodeURIComponent(productTitle)}&price=${encodeURIComponent(productPrice)}&url=${encodeURIComponent(productUrl)}`
           },
           "color": "#ffffff"
         },
@@ -126,8 +125,6 @@ const share = () => {
       "backgroundColor": "#000000"
     }
   }
-
-  // return;
   const data = [{
     type: "flex",
     altText: "This is a Flex Message",
