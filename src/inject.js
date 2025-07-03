@@ -80,19 +80,24 @@ rect.bar3 {
 `;
 document.head.appendChild(style);
 const swiperContainer = document.querySelector('.swiper');
-// const liffUrl = "https://tryon-liff.pages.dev"
-const liffUrl = "https://vietho.localhost:5175"
+const liffUrl = "https://tryon-liff.pages.dev"
+// const liffUrl = "https://vietho.localhost:5175"
 if (swiperContainer) {
     swiperContainer?.appendChild(iconDiv);
     iconDiv.addEventListener('click', () => {
         const activeImgSrc = document.querySelector('.swiper-slide-active img')?.src;
         const encodedImgSrc = encodeURIComponent(activeImgSrc);
+        // Get product name
+        const productName = document.querySelector('.p-goods-information__heading')?.innerText.trim();
+        // Get product price
+        const productPrice = document.querySelector('.p-goods-information__price')?.childNodes[0].nodeValue.trim();
+
         const popupWidth = 430;
         const popupHeight = 932;
         const left = window.screenX + (window.outerWidth - popupWidth) / 2;
         const top = window.screenY + (window.outerHeight - popupHeight) / 2;
         window.open(
-            `${liffUrl}/guide#url=${encodedImgSrc}`,
+            `${liffUrl}/guide?clothesImg=${encodedImgSrc}&title=${productName}&price=${productPrice}&url=${encodeURIComponent(window.location.href)}`,
             'popupWindow',
             `width=${popupWidth},height=${popupHeight},left=${left},top=${top},menubar=no,toolbar=no,status=no,resizable=no,scrollbars=no`
         );

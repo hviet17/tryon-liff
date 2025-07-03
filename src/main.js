@@ -4,25 +4,25 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import 'swiper/css';
 import 'swiper/css/pagination';
-
 import App from './App.vue'
 import router from './router'
+import LIFF from './liff';
+import {isValidUrl} from "@/helper.js";
+import {CLOTHES_SRC_KEY, PRODUCT_URL_KEY, PRODUCT_PRICE_KEY, PRODUCT_TITLE_KEY} from "@/const"
 
 const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
-import LIFF from './liff';
-import {isValidUrl} from "@/helper.js";
-import {CLOTHES_SRC_KEY} from "@/const.js";
-
 const saveClothesSrc = () => {
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-    const encodedUrl = params.get("url");
+    const params = new URLSearchParams(window.location.search);
+    const encodedUrl = params.get("clothesImg");
 
     if (encodedUrl && isValidUrl(encodedUrl)) {
         localStorage.setItem(CLOTHES_SRC_KEY, encodedUrl);
+        localStorage.setItem(PRODUCT_URL_KEY, params.get("url"));
+        localStorage.setItem(PRODUCT_PRICE_KEY, params.get("price"));
+        localStorage.setItem(PRODUCT_TITLE_KEY, params.get("title"));
     }
 }
 saveClothesSrc();

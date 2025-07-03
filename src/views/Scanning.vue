@@ -6,10 +6,14 @@
 
 <script setup>
 import { ref } from 'vue';
-import {useGlobal} from "@/composables/global.js";
 import {useRouter} from "vue-router";
+import {useGlobal} from "@/composables/global";
+import {urlToBlob, dataURLToBlob} from "@/helper.js";
+import {onMounted} from "vue";
+import {generateImage} from "@/services/generate.js";
+
 // How many scans to perform
-const {profileSrc} = useGlobal()
+const {clothingSrc, profileSrc, resultSrc} = useGlobal()
 const totalScans = ref(2)
 const currentScan = ref(0)
 const router = useRouter()
@@ -21,6 +25,20 @@ const handleScan = () => {
      router.push({name: 'processing'})
   }
 }
+
+onMounted(async () => {
+  if (!clothingSrc.value || !profileSrc.value) return;
+
+  const clothingBlob = await urlToBlob(clothingSrc.value);
+  const profileBlob = await dataURLToBlob(profileSrc.value);
+  if (profileSrc.value) {
+    try {
+      resultSrc.value = await generateImage(profileBlob, clothingBlob)
+    } catch (e) {
+      alert("Failed to generate image. Please try again.")
+    }
+  }
+})
 </script>
 
 <style scoped lang="scss">
