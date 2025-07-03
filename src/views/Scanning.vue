@@ -36,10 +36,11 @@ onMounted(async () => {
     try {
       const response = await generateImage(profileBlob, clothingBlob)
       if (response) {
-        resultSrc.value = response.data.imageUrl
-        beforeImageSrc.value = response.data.beforeImageUrl
+        resultSrc.value = response.imageUrl
+        beforeImageSrc.value = response.beforeImageUrl
       }
     } catch (e) {
+      console.log(e)
       alert("Failed to generate image. Please try again.")
     }
   }
