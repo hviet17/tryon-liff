@@ -126,7 +126,7 @@ onUnmounted(() => {
               </div>
               <div class="item-info">
                 <div class="name">{{productTitle}}</div>
-                <div class="price" v-if="productPrice">¥{{productPrice}}</div>
+                <div class="price" v-if="productPrice !== 'undefined'">¥{{productPrice}}</div>
               </div>
             </div>
           </div>
