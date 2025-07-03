@@ -9,7 +9,7 @@ import {CLOTHES_SRC_KEY, PRODUCT_URL_KEY, PRODUCT_PRICE_KEY, PRODUCT_TITLE_KEY} 
 
 const route = useRoute()
 const shareMenuRef = ref(null); // Create a ref to access the ShareMenu component instance
-const {resultSrc} = useGlobal()
+const {resultSrc, beforeImageSrc} = useGlobal()
 
 const share = () => {
   if (!resultSrc.value) {
@@ -111,7 +111,7 @@ const share = () => {
           "action": {
             "type": "uri",
             "label": "Go to Ai Fit",
-            "uri": `https://tryon-liff.pages.dev/result?clothesImg=${encodeURIComponent(clothesSrc)}&title=${productTitle}&price=${productPrice}&url=${encodeURIComponent(productUrl)}`,
+            "uri": `https://tryon-liff.pages.dev/result?beforeImg=${encodeURIComponent(beforeImageSrc.value)}&afterImg=${encodeURIComponent(resultSrc.value)}&clothesImg=${encodeURIComponent(clothesSrc)}&title=${productTitle}&price=${productPrice}&url=${encodeURIComponent(productUrl)}`,
           },
           "color": "#ffffff"
         },
