@@ -69,8 +69,8 @@ iconDiv.innerHTML = `
     <div>Try On With AI</div>
   `;
 const swiperContainer = document.querySelector('.swiper');
-// const liffUrl = "https://tryon-liff.pages.dev"
-const liffUrl = "https://vietho.localhost:5175"
+const liffUrl = "https://tryon-liff.pages.dev"
+// const liffUrl = "https://vietho.localhost:5175"
 if (swiperContainer) {
     swiperContainer?.appendChild(iconDiv);
     iconDiv.addEventListener('click', () => {

@@ -105,7 +105,7 @@ onUnmounted(() => {
       <div class="bottom-stick"></div>
       <div class="summary-container">
         <div class="img-result image-comparison-container" ref="containerRef">
-          <img :src="profileSrc" alt="After Image" class="comparison-image before-image" />
+          <img :src="profileSrc || beforeImageSrc" alt="After Image" class="comparison-image before-image" />
           <img :src="resultSrc" alt="Before Image" class="comparison-image after-image" ref="afterImageRef" />
           <div class="slider-handle" ref="sliderHandleRef"
                @mousedown="startDragging"
