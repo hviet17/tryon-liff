@@ -195,8 +195,8 @@ onUnmounted(() => {
   position: absolute;
   top: 0;
   left: 0%;
-  width: 10px;
-  border-left: 4px solid white;
+  width: 50px;
+  border-right: 4px solid white;
   height: 100%;
   cursor: ew-resize;
   transform: translateX(-50%);
